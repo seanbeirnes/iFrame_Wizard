@@ -1,6 +1,6 @@
 export default function Header(){
     return (
-        <header className="p-2 shadow-md">
+        <header className="p-2 bg-white shadow-md">
             <div className="flex justify-between">
                 <div className="">
                     <h1 className="text-2xl font-bold text-sky-700">iFrame Wizard</h1>

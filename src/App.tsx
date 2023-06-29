@@ -8,8 +8,10 @@ function App() {
 
   return (
     <>
-      <Header/>
-      <Main/>
+      <div className='bg-white'>
+        <Header/>
+        <Main/>
+      </div>
       <Footer/>
     </>
   )
