@@ -1,0 +1,22 @@
+import Card from "../common/Card/Card"
+import Card_Section from "../common/Card/Card_Section/Card_Section"
+import Button_Primary from "../common/buttons/Button_Primary/Button_Primary"
+
+export default function EmbedCodeGen(){
+    return (
+        <Card title="(Insert Name) Embed Code Generator">
+            <Card_Section title="Select a source vendor or choose the gear icon to customize">
+                <p className="text-xs text-gray-700" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, laboriosam.</p>
+            </Card_Section>
+            <Card_Section title="Add the iFrame Source">
+                <p className="text-xs text-gray-700" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, laboriosam.</p>
+            </Card_Section>
+            <Card_Section title="Set options">
+                <div className="grid grid-flow-row grid-cols-1 gap-4">
+                    <p className="text-xs text-gray-700" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, laboriosam.</p>
+                    <Button_Primary title="Generate Embed Code"/>
+                </div>
+            </Card_Section>
+        </Card>
+    )
+}

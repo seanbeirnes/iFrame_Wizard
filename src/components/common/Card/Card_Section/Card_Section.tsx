@@ -1,0 +1,18 @@
+type Props = {
+    title?: string;
+    children?: React.ReactNode;
+}
+
+export default function Card_Section({ title, children }: Props){
+    return (
+        <>
+            <div className="bg-gray-200 px-2 py-1">
+                <h3 className="text-xs text-gray-600">{title}</h3>
+            </div>
+            <div className="p-4">
+                {children}
+            </div>
+        </>
+
+    )
+}
