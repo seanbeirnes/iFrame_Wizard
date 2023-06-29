@@ -1,17 +1,11 @@
-import Help from "../../ui/Help.tsx";
-import EmbedCodeGen from "../../ui/Embed_Code_Generator.tsx";
-import GeneratedCode from "../../ui/Generated_Code.tsx";
+type Props = {
+  children?: React.ReactNode;
+}
 
-export default function Main(){
+export default function Main({children}: Props){
     return (
-        <main className="container mx-auto max-w-screen-lg p-2">
-
-        <Help/>
-
-        <EmbedCodeGen/>
-
-        <GeneratedCode/>
-
+      <main className="container mx-auto max-w-screen-lg p-2">
+        {children}
       </main>
     )
 }
