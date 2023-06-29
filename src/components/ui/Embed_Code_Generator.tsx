@@ -13,11 +13,15 @@ export default function EmbedCodeGen(){
                     <Button_Square src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" />
                     <Button_Square src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" />
                     <Button_Square src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" />
-                    <Button_Square src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" />
+                    <Button_Square src="./src/assets/images/icons/settings-svgrepo-com.svg" />
                 </div>
             </Card_Section>
             <Card_Section title="Add the iFrame Source">
-                <p className="text-xs text-gray-700" >Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, laboriosam.</p>
+                <div className="px-2">
+                    <label htmlFor="add-url">
+                        <input className="border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400" type="text" name="add-url" id="add-url" />
+                    </label>
+                </div>
             </Card_Section>
             <Card_Section title="Set options">
                 <div className="grid grid-flow-row grid-cols-1 gap-4">
