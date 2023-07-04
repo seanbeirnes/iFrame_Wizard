@@ -20,6 +20,7 @@ export default function GeneratedCode({inner_text}: Props){
 
     const [intervalID, setIntervalID] = useState(null)
     
+    // Calls repeatedly, so will need to be fixed.
     function reset(){
         if (intervalID === null){
             setIntervalID(setInterval(function(){setCopyMessage([...copyMessage, copyMessage_Status.reset])}, 5000))
