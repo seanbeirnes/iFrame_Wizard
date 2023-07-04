@@ -17,11 +17,15 @@ function App() {
     setHelpActive(active => !active)
   }
 
+  const resetClick = () => {
+    location.reload()
+  }
+
   return (
     <>
       <div className='bg-white'>
         <Header>
-          <Button_Square src="./src/assets/images/icons/redo-svgrepo-com.svg"/>
+          <Button_Square src="./src/assets/images/icons/redo-svgrepo-com.svg" handleClick={resetClick}/>
           <Button_Square src="./src/assets/images/icons/help-svgrepo-com.svg" handleClick={helpClick}/>
         </Header>
         <Main>
