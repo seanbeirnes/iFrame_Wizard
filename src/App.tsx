@@ -28,10 +28,8 @@ function App() {
 
           {helpActive && (<Help/>)}
           
-
           <EmbedCodeGen/>
 
-          <GeneratedCode/>
         </Main>
       </div>
       <Footer/>

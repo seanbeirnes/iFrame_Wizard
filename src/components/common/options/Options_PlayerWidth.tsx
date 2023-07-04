@@ -2,13 +2,15 @@ import { ChangeEventHandler } from "react";
 import Options_Wrapper from "./Options_Wrapper";
 
 type Props = { 
-    label?: string;
-    id?: string;
-    value?: string;
-    changeHandler?: ChangeEventHandler;
+    label: string;
+    id: string;
+    value: string;
+    width: string;
+    height: string;
+    changeHandler: ChangeEventHandler;
 }
 
-export default function Options_PlayerWidth({ label, id, value, changeHandler }: Props){
+export default function Options_PlayerWidth({ label, id, value, width, height, changeHandler}: Props){
 
     let use_custom = value==="custom" ? true : false;
 
@@ -21,11 +23,11 @@ export default function Options_PlayerWidth({ label, id, value, changeHandler }:
                     <div className="flex flex-wrap items-center justify-center gap-2 ml-auto">
                         <div>
                             <label className="text-xs text-gray-700 pr-2">Width</label>
-                            <input className="px-1 w-16 border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500" type="number" placeholder="560" min="0" max="1920" step="10"></input>
+                            <input id={id+"_width"} className="px-1 w-16 border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500" type="number" placeholder="560" min="0" max="1920" step="10" value={width} onChange={changeHandler}></input>
                         </div>
                         <div>
                             <label className="text-xs text-gray-700 pr-2">Height</label>
-                            <input className="px-1 w-16 mr-2 border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500" type="number" placeholder="315" min="0" max="1080" step="10"></input>
+                            <input id={id+"_height"} className="px-1 w-16 mr-2 border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500" type="number" placeholder="315" min="0" max="1080" step="10" value={height} onChange={changeHandler} ></input>
                         </div>
                         
                     </div>
