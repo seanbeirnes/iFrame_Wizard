@@ -3,15 +3,16 @@ import Card_Section from "../common/Card/Card_Section/Card_Section"
 import Button_Primary from "../common/buttons/Button_Primary/Button_Primary"
 import Button_Square from "../common/buttons/Button_Square/Button_Square"
 import Options_Toggle from "../common/options/Options_Toggle.tsx"
-import Options_Dropdown from "../common/options/Options_Dropdown.tsx"
 import Options_Text from "../common/options/Options_Text.tsx"
 import { ChangeEvent, useState } from "react"
+import Options_PlayerWidth from "../common/options/Options_PlayerWidth.tsx"
 
 export default function EmbedCodeGen(){
 
     const [formProps, setFormProps] = useState<{
         [index: string]: boolean | string;
         allow_fullscreen: boolean;
+        player_max_size: string;
         use_modest_branding: boolean;
         turn_off_related_videos: boolean;
         use_custom_props: boolean;
@@ -19,6 +20,7 @@ export default function EmbedCodeGen(){
         url: string;
     }>({
         allow_fullscreen: true,
+        player_max_size: "default",
         use_modest_branding: true,
         turn_off_related_videos: true,
         use_custom_props: false,
@@ -78,7 +80,7 @@ export default function EmbedCodeGen(){
                     <Options_Toggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>
                     <Options_Toggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>
                     <Options_Toggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>
-                    <Options_Dropdown label="Player maximum size:" />
+                    <Options_PlayerWidth label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} changeHandler={handleFormProps_string}/>
                     <Options_Text label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>
                     <Button_Primary title="Generate Embed Code" clickHandler={submitHandler}/>
                 </div>
