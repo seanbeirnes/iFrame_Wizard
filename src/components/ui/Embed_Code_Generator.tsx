@@ -14,16 +14,21 @@ export default function EmbedCodeGen(){
         allow_fullscreen: boolean;
         use_modest_branding: boolean;
         turn_off_related_videos: boolean;
+        use_custom_props: boolean;
+        use_custom_props_value: string;
         url: string;
     }>({
         allow_fullscreen: true,
         use_modest_branding: true,
         turn_off_related_videos: true,
+        use_custom_props: false,
+        use_custom_props_value: "",
         url: "",
     });
 
     function handleFormProps_string(e: ChangeEvent<HTMLInputElement>){
         const elementID = (e.target as HTMLInputElement).id.split("-")[0]
+
         if(e.target){
             setFormProps(existingValues => ({
                 ...existingValues,
@@ -70,11 +75,11 @@ export default function EmbedCodeGen(){
             </Card_Section>
             <Card_Section title="Set options">
                 <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
-                    <Options_Toggle label="Allow Fullscreen" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>
-                    <Options_Toggle label="Use modest branding" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>
-                    <Options_Toggle label="Turn off related videos" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>
-                    <Options_Dropdown label="Testing name here" />
-                    <Options_Text label="Testing name here" />
+                    <Options_Toggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>
+                    <Options_Toggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>
+                    <Options_Toggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>
+                    <Options_Dropdown label="Player maximum size:" />
+                    <Options_Text label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>
                     <Button_Primary title="Generate Embed Code" clickHandler={submitHandler}/>
                 </div>
             </Card_Section>
