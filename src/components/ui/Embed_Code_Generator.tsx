@@ -69,7 +69,10 @@ export default function EmbedCodeGen(){
         }
     }
 
-    const [embedCode, setEmbedCode] = useState({text:""})
+    const [embedCode, setEmbedCode] = useState<{
+        [index: string]: string
+        text: string
+    }>({text:""})
 
     function submitHandler(){
         setEmbedCode({text: JSON.stringify(formProps)})
