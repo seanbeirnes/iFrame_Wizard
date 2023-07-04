@@ -7,7 +7,6 @@ import Footer from "./components/layout/Footer/Footer.tsx"
 import Button_Square from "./components/common/buttons/Button_Square/Button_Square"
 import Help from "./components/ui/Help.tsx";
 import EmbedCodeGen from "./components/ui/Embed_Code_Generator.tsx";
-import GeneratedCode from "./components/ui/Generated_Code.tsx";
 
 function App() {
 
