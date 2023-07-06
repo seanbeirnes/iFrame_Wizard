@@ -1,5 +1,5 @@
 import { ReactEventHandler } from "react";
-import Options_Wrapper from "./Options_Wrapper";
+import { OptionsWrapper } from "./OptionsWrapper";
 import { ToggleSwitch } from "../buttons";
 
 type Props = {
@@ -9,13 +9,13 @@ type Props = {
     clickHandler: ReactEventHandler;
 }
 
-export default function Options_Toggle({ label, id, active, clickHandler}: Props){
+export default function OptionsToggle({ label, id, active, clickHandler}: Props){
     return (
-        <Options_Wrapper>
+        <OptionsWrapper>
             <>
             <span className={`${!active && "text-gray-400"} ${active && "text-gray-700"} text-sm transition`}>{label}</span>
             <ToggleSwitch active={active} id={id} clickHandler={clickHandler} />
             </>
-        </Options_Wrapper>
+        </OptionsWrapper>
     )
 }

@@ -1,5 +1,5 @@
 import { ChangeEventHandler, ReactEventHandler } from "react";
-import Options_Wrapper from "./Options_Wrapper";
+import { OptionsWrapper } from "./OptionsWrapper";
 
 type Props = {
     label?: string;
@@ -11,9 +11,9 @@ type Props = {
     changeHandler?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export default function Options_Text({ label, input_id, toggle_id, active, value, clickHandler, changeHandler }: Props){
+export default function OptionsText({ label, input_id, toggle_id, active, value, clickHandler, changeHandler }: Props){
     return (
-        <Options_Wrapper>
+        <OptionsWrapper>
             <>
                 <span className={`${!active && "text-gray-400"} ${active && "text-gray-700"} text-sm mr-2 transition`}>{label}</span>
                 <label htmlFor={label}></label>
@@ -22,6 +22,6 @@ export default function Options_Text({ label, input_id, toggle_id, active, value
                     <div className={`${!active && "translate-x-[1px]"} ${active && "translate-x-[17px]"} w-[14px] h-[14px] rounded-full bg-gray-50 transition`} id={toggle_id+"-toggle"} onClick={clickHandler}></div>
                 </div>
             </>
-        </Options_Wrapper>
+        </OptionsWrapper>
     )
 }

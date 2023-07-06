@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from "react";
-import Options_Wrapper from "./Options_Wrapper";
+import { OptionsWrapper } from "./OptionsWrapper";
 
 type Props = { 
     label: string;
@@ -10,12 +10,12 @@ type Props = {
     changeHandler: ChangeEventHandler;
 }
 
-export default function Options_PlayerWidth({ label, id, value, width, height, changeHandler}: Props){
+export default function OptionsPlayerWidth({ label, id, value, width, height, changeHandler}: Props){
 
     let use_custom = value==="custom" ? true : false;
 
     return (
-        <Options_Wrapper>
+        <OptionsWrapper>
             <>
                 <span className="text-sm text-gray-700">{label}</span>
 
@@ -42,6 +42,6 @@ export default function Options_PlayerWidth({ label, id, value, width, height, c
                     <option value="custom">Custom</option>
                 </select>
             </>
-        </Options_Wrapper>
+        </OptionsWrapper>
     )
 }
