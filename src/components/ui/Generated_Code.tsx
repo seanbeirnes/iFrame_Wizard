@@ -1,5 +1,5 @@
 
-import Card from "../common/cards/Card/Card"
+import { Card } from "../common/cards";
 import { ButtonSecondary } from "../common/buttons"
 import copyToClipboard from "../../services/clipboard/clipboard"
 import { useState } from "react";
