@@ -2,7 +2,7 @@
 import Card from "../common/cards/Card/Card"
 import { ButtonSecondary } from "../common/buttons"
 import copyToClipboard from "../../services/clipboard/clipboard"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Props = {
     inner_text: string;

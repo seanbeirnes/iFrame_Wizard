@@ -1,16 +1,18 @@
 import { ChangeEventHandler } from "react";
 import { OptionsWrapper } from "./OptionsWrapper";
+import { Dropdown } from "./Dropdown";
 
 type Props = { 
     label: string;
     id: string;
     value: string;
+    options: Array<{value: string, text: string}>
     width: string;
     height: string;
     changeHandler: ChangeEventHandler;
 }
 
-export default function OptionsPlayerWidth({ label, id, value, width, height, changeHandler}: Props){
+export default function OptionsPlayerWidth({ label, id, value, options, width, height, changeHandler}: Props){
 
     let use_custom = value==="custom" ? true : false;
 
@@ -33,14 +35,8 @@ export default function OptionsPlayerWidth({ label, id, value, width, height, ch
                     </div>
                 )}
 
-                <select name="select-width" id={id} className="text-xs outline-2 outline-sky-400" onChange={changeHandler} value={value}>
-                    <option value="small">Small (426 x 240)</option>
-                    <option value="default">Default (560 x 315)</option>
-                    <option value="medium">Medium (640 x 360)</option>
-                    <option value="large">Large (854 x 480)</option>
-                    <option value="fill">Fill (100% width)</option>
-                    <option value="custom">Custom</option>
-                </select>
+                <Dropdown id={id} value={value} options={options} changeHandler={changeHandler}/>
+
             </>
         </OptionsWrapper>
     )

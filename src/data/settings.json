@@ -1,0 +1,10 @@
+{
+    "player_width_selction_options":[
+        {"value":"small", "text":"Small (426 x 240)"},
+        {"value":"default", "text":"Default (560 x 315)"},
+        {"value":"medium", "text":"Medium (640 x 360)"},
+        {"value":"large", "text":"Large (854 x 480)"},
+        {"value":"fill", "text":"Fill (100% width)"},
+        {"value":"custom", "text":"Custom"}
+    ]
+}

@@ -1,7 +1,8 @@
+import * as settings from "../../data/settings.json"
 import { ChangeEvent, useState } from "react"
 import {Card, CardSection} from "../common/cards"
 import {ButtonPrimary, ButtonSquare} from "../common/buttons"
-import { OptionsTextInput, OptionsToggle, OptionsPlayerWidth } from "../common/options"
+import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options"
 import GeneratedCode from "./Generated_Code.tsx"
 
 export default function EmbedCodeGen(){
@@ -98,7 +99,7 @@ export default function EmbedCodeGen(){
                     <OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>
                     <OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>
                     <OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>
-                    <OptionsPlayerWidth label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
+                    <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
                     <OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>
                     <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
                 </div>
