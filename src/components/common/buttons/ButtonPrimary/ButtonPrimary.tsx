@@ -1,8 +1,8 @@
 import { ReactEventHandler } from "react";
 
 type Props = {
-    clickHandler?: ReactEventHandler;
-    title?: string;
+    clickHandler: ReactEventHandler;
+    title: string;
 }
 
 export default function ButtonPrimary({ clickHandler, title }: Props){
