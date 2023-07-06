@@ -1,5 +1,5 @@
-import Card from "../common/Card/Card"
-import Card_Section from "../common/Card/Card_Section/Card_Section"
+import Card from "../common/cards/Card/Card"
+import Card_Section from "../common/cards/CardSection/CardSection"
 
 export default function Help(){
     return (

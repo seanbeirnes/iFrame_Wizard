@@ -3,7 +3,7 @@ type Props = {
     children?: React.ReactNode;
 }
 
-export default function Card_Section({ title, children }: Props){
+export default function CardSection({ title, children }: Props){
     return (
         <>
             <div className="bg-gray-200 px-2 py-1">

@@ -1,6 +1,6 @@
 
-import Card from "../common/Card/Card"
-import Button_Secondary from "../common/buttons/Button_Secondary/Button_Secondary"
+import Card from "../common/cards/Card/Card"
+import { ButtonSecondary } from "../common/buttons"
 import copyToClipboard from "../../services/clipboard/clipboard"
 import { useEffect, useState } from "react";
 
@@ -66,7 +66,7 @@ export default function GeneratedCode({inner_text}: Props){
         <Card title="Generated Code">
             <div className="p-2 flex justify-between items-center">
                 <p className={`text-base font-medium transition ${classes}`}>{message}</p>
-                <Button_Secondary title="Copy" handleClick={function(){copyClick(inner_text)}}/>
+                <ButtonSecondary title="Copy" handleClick={function(){copyClick(inner_text)}}/>
             </div>
             <div className="p-2">
                 <textarea className="resize-none w-full min-h-max p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
