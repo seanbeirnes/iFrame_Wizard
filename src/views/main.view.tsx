@@ -21,8 +21,8 @@ export default function MainView(){
         <>
         <div className='bg-white'>
           <Header>
-            <ButtonSquare src="./src/assets/images/icons/redo-svgrepo-com.svg" clickHandler={resetClick}/>
-            <ButtonSquare src="./src/assets/images/icons/help-svgrepo-com.svg" clickHandler={helpClick}/>
+            <ButtonSquare src="./src/assets/images/icons/refresh-outline.svg" clickHandler={resetClick}/>
+            <ButtonSquare src="./src/assets/images/icons/help-outline.svg" clickHandler={helpClick}/>
           </Header>
           <Main>
   

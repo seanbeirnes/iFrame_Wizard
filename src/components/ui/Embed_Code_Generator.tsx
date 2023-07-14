@@ -85,7 +85,7 @@ export default function EmbedCodeGen(){
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/icons/settings-svgrepo-com.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){}} />
                 </div>
             </CardSection>
             <CardSection title="Add the iFrame Source">
