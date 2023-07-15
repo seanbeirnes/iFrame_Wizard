@@ -80,11 +80,11 @@ export default function EmbedCodeGen(){
         <Card title="(Insert Name) Embed Code Generator">
             <CardSection title="Select a template or choose the gear icon to customize">
                 <div className="px-2 flex flex-wrap gap-2">
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-svgrepo-com.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){}} />
                     <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){}} />
                 </div>
             </CardSection>
