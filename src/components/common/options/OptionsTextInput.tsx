@@ -18,7 +18,7 @@ export default function OptionsText({ label, input_id, toggle_id, active, value,
             <>
                 <span className={`${!active && "text-gray-400"} ${active && "text-gray-700"} text-sm mr-2 transition`}>{label}</span>
                 <label htmlFor={label}></label>
-                <input className="p-1 border-2 grow border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500 disabled:bg-gray-300 disabled:text-gray-400 transition" type="text" name={label} placeholder="Enter additional iFrame properties here" id={input_id} disabled={!active} value={value} onChange={changeHandler}/>
+                <input className="p-1 border-2 mr-2 grow border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-xs text-gray-500 disabled:bg-gray-300 disabled:text-gray-400 transition" type="text" name={label} placeholder="Enter additional iFrame properties here" id={input_id} disabled={!active} value={value} onChange={changeHandler}/>
                 <ToggleSwitch active={active} id={toggle_id} clickHandler={clickHandler} />
             </>
         </OptionsWrapper>
