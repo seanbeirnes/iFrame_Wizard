@@ -1,4 +1,5 @@
 import * as settings from "../../data/settings.json"
+import * as profiles from "../../data/embed_profiles.json"
 import { ChangeEvent, useState } from "react"
 import {Card, CardSection} from "../common/cards"
 import {ButtonPrimary, ButtonSquare} from "../common/buttons"
@@ -6,6 +7,8 @@ import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/opti
 import GeneratedCode from "./Generated_Code.tsx"
 
 export default function EmbedCodeGen(){
+
+    const profile = profiles.voicethread
 
     const [formProps, setFormProps] = useState<{
         [index: string]: boolean | string;
@@ -19,13 +22,13 @@ export default function EmbedCodeGen(){
         use_custom_props_value: string;
         url: string;
     }>({
-        allow_fullscreen: true,
+        allow_fullscreen: profile.allow_fullscreen.active,
         player_max_size: "default",
         player_max_size_width: "560",
         player_max_size_height: "315",
-        use_modest_branding: true,
-        turn_off_related_videos: true,
-        use_custom_props: false,
+        use_modest_branding: profile.use_modest_branding.active,
+        turn_off_related_videos: profile.use_modest_branding.active,
+        use_custom_props: profile.use_custom_properties.active,
         use_custom_props_value: "",
         url: "",
     });
@@ -96,11 +99,14 @@ export default function EmbedCodeGen(){
             </CardSection>
             <CardSection title="Set options">
                 <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
-                    <OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>
-                    <OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>
-                    <OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>
+                    {profile.allow_fullscreen.used && (<OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>)}
+                    {profile.turn_off_related_videos.used && (<OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>)}    
+                    {profile.use_modest_branding.used && (<OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>)}
+                    
                     <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
-                    <OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>
+
+                    {profile.use_custom_properties.used && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>)}
+                    
                     <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
                 </div>
             </CardSection>
