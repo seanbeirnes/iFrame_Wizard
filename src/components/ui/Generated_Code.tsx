@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef, ReactInstance, ReactHTMLElement, ReactNode, ReactPropTypes, TextareaHTMLAttributes } from "react";
 import { Card } from "../common/cards";
 import { ButtonSecondary } from "../common/buttons"
 import copyToClipboard from "../../services/clipboard/clipboard"
@@ -62,6 +62,15 @@ export default function GeneratedCode({inner_text}: Props){
     let classes = changeClasses(copyMessage.slice(-1)[0])
     let message = changeMessage(copyMessage)
 
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useEffect( () => {
+        if(textareaRef.current){
+            textareaRef.current.style.height = 'auto';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight * 1.1}px `;
+        }
+    }, [inner_text])
+
     return (
         <Card title="Generated Code">
             <div className="p-2 flex justify-between items-center">
@@ -69,7 +78,7 @@ export default function GeneratedCode({inner_text}: Props){
                 <ButtonSecondary title="Copy" clickHandler={function(){copyClick(inner_text)}}/>
             </div>
             <div className="p-2">
-                <textarea className="resize-none w-full p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
+                <textarea ref={textareaRef} className="resize-none w-full p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
             </div>
         </Card>
     )
