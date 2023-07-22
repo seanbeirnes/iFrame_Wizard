@@ -8,7 +8,13 @@ import GeneratedCode from "./Generated_Code.tsx"
 
 export default function EmbedCodeGen(){
 
-    const profile = profiles.youtube
+    const [useProfile, setUseProfile] = useState("youtube")
+
+    function handleProfileChange(newProfile: string){
+        setUseProfile(newProfile)
+    }
+
+    const profile = profiles[useProfile]
 
     const [showMore, setShowMore] = useState(false)
 
@@ -20,6 +26,7 @@ export default function EmbedCodeGen(){
 
     const [formProps, setFormProps] = useState<{
         [index: string]: boolean | string;
+        name: string;
         allow_accelerometer: boolean;
         allow_autoplay: boolean;
         allow_clipboard_write: boolean;
@@ -37,6 +44,7 @@ export default function EmbedCodeGen(){
         use_custom_props_value: string;
         url: string;
     }>({
+        name: profile.name,
         allow_accelerometer: profile.allow_accelerometer.active,
         allow_autoplay: profile.allow_autoplay.active,
         allow_clipboard_write: profile.allow_clipboard_write.active,
@@ -105,12 +113,24 @@ export default function EmbedCodeGen(){
         <Card title="(Insert Name) Embed Code Generator">
             <CardSection title="Select a template or choose the gear icon to customize">
                 <div className="px-2 flex flex-wrap gap-2">
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){}} />
-                    <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){}} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
+                        handleProfileChange("youtube")
+                    }} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
+                        handleProfileChange("vimeo")
+                    }} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
+                        handleProfileChange("html5")
+                    }} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
+                        handleProfileChange("voicethread")
+                    }} />
+                    <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
+                        handleProfileChange("canvas")
+                    }} />
+                    <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){
+                        handleProfileChange("custom")
+                    }} />
                 </div>
             </CardSection>
             <CardSection title="Add the iFrame Source">
