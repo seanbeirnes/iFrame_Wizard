@@ -1,8 +1,9 @@
 
-import { useState, useEffect, useRef, ReactInstance, ReactHTMLElement, ReactNode, ReactPropTypes, TextareaHTMLAttributes } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card } from "../common/cards";
 import { ButtonSecondary } from "../common/buttons"
 import copyToClipboard from "../../services/clipboard/clipboard"
+import { TimedText } from "../common/notifications";
 
 type Props = {
     inner_text: string;
@@ -10,57 +11,35 @@ type Props = {
 
 export default function GeneratedCode({inner_text}: Props){
 
-    const copyMessage_Status = {
-        reset: "reset",
-        success: "success",
-        failed: "failed"
-    }
-
-    const [copyMessage, setCopyMessage] = useState([copyMessage_Status.reset])
-
-    const [intervalID, setIntervalID] = useState(null)
-    
-    // Calls repeatedly, so will need to be fixed.
-    function reset(){
-        // if (intervalID === null){
-        //     setIntervalID(setInterval(function(){setCopyMessage([...copyMessage, copyMessage_Status.reset])}, 5000))
-        // }
-    }
+    const [copyStatus, setCopyStatus] = useState({
+        show: false,
+        success: false
+    })
 
     function copyClick(text: string){
+        // Change copyStatus to default to force rerender
+        setCopyStatus({
+            show: false,
+            success: false,
+        })
+
         function success(){
-            setCopyMessage([...copyMessage, copyMessage_Status.success])
-            reset()
+            setCopyStatus({
+                show: true,
+                success: true
+            })
         }
+
         function fail(){
-            setCopyMessage([...copyMessage, copyMessage_Status.failed])
-            reset()
+            setCopyStatus({
+                show: true,
+                success: false
+            })
         }
+
         copyToClipboard(text, success, fail)
+        
     }
-
-    function changeClasses(status: any){
-        if(status === copyMessage_Status.success){
-            return "text-green-500 opacity-100"
-        }else if(status === copyMessage_Status.failed){
-            return "text-red-600 backdrop-opacity-100"
-        }else if(status === copyMessage_Status.reset){
-            return "opacity-0"
-        }
-    }
-
-    function changeMessage(status: any){
-        if(status.slice(-1)[0] === copyMessage_Status.success){
-            return "Copied to clipboard!"
-        }else if(status.slice(-1)[0] === copyMessage_Status.failed){
-            return "Error copying to clipboard."
-        }else if(status.slice(-1)[0] === copyMessage_Status.reset){
-            console.log(status)
-        }
-    }
-
-    let classes = changeClasses(copyMessage.slice(-1)[0])
-    let message = changeMessage(copyMessage)
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -74,7 +53,9 @@ export default function GeneratedCode({inner_text}: Props){
     return (
         <Card title="Generated Code">
             <div className="p-2 flex justify-between items-center">
-                <p className={`text-base font-medium transition ${classes}`}>{message}</p>
+                <div>
+                {copyStatus.show && <TimedText className={`text-base font-medium ${copyStatus.success ? "text-green-500" : "text-red-600"}`} text={copyStatus.success ? "Copied to clipboard! " : "Error copying to clipboard."} />}
+                </div>
                 <ButtonSecondary title="Copy" clickHandler={function(){copyClick(inner_text)}}/>
             </div>
             <div className="p-2">

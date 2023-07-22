@@ -1,0 +1,13 @@
+@keyframes timed-text-disappear {
+    0% {
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.timed-text {
+    opacity: 0;
+    animation: 5s timed-text-disappear;
+}
