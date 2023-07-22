@@ -1,8 +1,6 @@
-export default function modelsRouter(settingsObject){
+import { FormPropsData } from "../components/ui/EmbedCodeGen.types";
 
-    function formatResponse(succeeded, message, text){
-        return {succeeded: succeeded, message: message, text: text}
-    }
+export default function modelsRouter(settingsObject: FormPropsData){
 
     let response = ""
     
@@ -28,6 +26,10 @@ export default function modelsRouter(settingsObject){
         default:
             response = "Error: unknown video player.";
             break;
+    }
+
+    function formatResponse(succeeded: boolean, message: string, text: string){
+        return {succeeded: succeeded, message: message, text: text}
     }
 
     return formatResponse(false, "The operation succeeded", response)
