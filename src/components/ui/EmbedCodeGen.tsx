@@ -6,6 +6,7 @@ import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/in
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
 import GeneratedCode from "./Generated_Code.tsx"
 import { ProfileSettingsData } from "./EmbedCodeGen.types.ts"
+import modelsRouter from "../../models/modelsRouter.ts"
 
 const profiles: ProfileSettingsData = profilesJOSN
 
@@ -130,7 +131,12 @@ export default function EmbedCodeGen(){
     }>({text:""})
 
     function submitHandler(){
-        setEmbedCode({text: JSON.stringify(formProps)})
+        const embedCodeResponse = modelsRouter(formProps)
+        if(embedCodeResponse.succeeded){
+            setEmbedCode({text: embedCodeResponse.text})
+        }else{
+            alert(embedCodeResponse.message)
+        } 
     }
 
     return (
