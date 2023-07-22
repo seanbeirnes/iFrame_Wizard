@@ -5,7 +5,7 @@ import {Card, CardSection} from "../common/cards/index.tsx"
 import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
 import GeneratedCode from "./Generated_Code.tsx"
-import { FormPropsData, ProfileSettingsData } from "./EmbedCodeGen.types.ts"
+import { FormPropsData, ProfileSettingsData } from "../../types/types.ts"
 import modelsRouter from "../../models/modelsRouter.ts"
 
 const profiles: ProfileSettingsData = profilesJOSN

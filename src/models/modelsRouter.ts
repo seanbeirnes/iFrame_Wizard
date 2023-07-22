@@ -1,4 +1,4 @@
-import { FormPropsData } from "../components/ui/EmbedCodeGen.types";
+import { FormPropsData } from "../types/types";
 
 export default function modelsRouter(settingsObject: FormPropsData){
 
@@ -32,5 +32,5 @@ export default function modelsRouter(settingsObject: FormPropsData){
         return {succeeded: succeeded, message: message, text: text}
     }
 
-    return formatResponse(false, "The operation succeeded", response)
+    return formatResponse(true, "The operation succeeded", response)
 }
