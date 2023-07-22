@@ -9,8 +9,8 @@
       "allow_picture_in_picture": { "used": true, "active": true },
       "allow_web_share": { "used": true, "active": true },
       "allow_fullscreen": { "used": true, "active": true },
-      "use_modest_branding": { "used": false, "active": true },
-      "turn_off_related_videos": { "used": false, "active": true },
+      "use_modest_branding": { "used": false, "active": false },
+      "turn_off_related_videos": { "used": false, "active": false },
       "use_custom_properties": { "used": true, "active": false }
     },
     "custom": {
@@ -37,8 +37,8 @@
       "allow_picture_in_picture": { "used": true, "active": true },
       "allow_web_share": { "used": true, "active": true },
       "allow_fullscreen": { "used": true, "active": true },
-      "use_modest_branding": { "used": false, "active": true },
-      "turn_off_related_videos": { "used": false, "active": true },
+      "use_modest_branding": { "used": false, "active": false },
+      "turn_off_related_videos": { "used": false, "active": false },
       "use_custom_properties": { "used": true, "active": false }
     },
     "vimeo": {
@@ -51,8 +51,8 @@
       "allow_picture_in_picture": { "used": true, "active": true },
       "allow_web_share": { "used": true, "active": true },
       "allow_fullscreen": { "used": true, "active": true },
-      "use_modest_branding": { "used": false, "active": true },
-      "turn_off_related_videos": { "used": false, "active": true },
+      "use_modest_branding": { "used": false, "active": false },
+      "turn_off_related_videos": { "used": false, "active": false },
       "use_custom_properties": { "used": true, "active": false }
     },
     "voicethread": {

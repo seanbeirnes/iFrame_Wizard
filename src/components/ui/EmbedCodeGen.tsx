@@ -1,6 +1,6 @@
 import * as settings from "../../data/settings.json"
 import * as profilesJOSN from "../../data/embed_profiles.json"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, useState, useEffect } from "react"
 import {Card, CardSection} from "../common/cards/index.tsx"
 import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
@@ -13,19 +13,17 @@ export default function EmbedCodeGen(){
 
     const [useProfile, setUseProfile] = useState("youtube")
 
+    let profile = profiles[useProfile]
+
     function handleProfileChange(newProfile: string){
         setUseProfile(newProfile)
     }
-
-    const profile = profiles[useProfile]
 
     const [showMore, setShowMore] = useState(false)
 
     function handleShowMore(){
         setShowMore(!showMore)
     }
-
-    const show_advanced: boolean = true
 
     const [formProps, setFormProps] = useState<{
         [index: string]: boolean | string;
@@ -65,6 +63,30 @@ export default function EmbedCodeGen(){
         use_custom_props_value: "",
         url: "",
     });
+
+    useEffect( () => {
+        setFormProps(
+            {
+                name: profile.name,
+                allow_accelerometer: profile.allow_accelerometer.active,
+                allow_autoplay: profile.allow_autoplay.active,
+                allow_clipboard_write: profile.allow_clipboard_write.active,
+                allow_encrypted_media: profile.allow_encrypted_media.active,
+                allow_gyroscope: profile.allow_gyroscope.active,
+                allow_picture_in_picture: profile.allow_picture_in_picture.active,
+                allow_web_share: profile.allow_web_share.active,
+                allow_fullscreen: profile.allow_fullscreen.active,
+                player_max_size: "default",
+                player_max_size_width: "560",
+                player_max_size_height: "315",
+                use_modest_branding: profile.use_modest_branding.active,
+                turn_off_related_videos: profile.use_modest_branding.active,
+                use_custom_props: profile.use_custom_properties.active,
+                use_custom_props_value: "",
+                url: "",
+            }
+        )
+    }, [useProfile])
 
     function handleFormProps_string(e: ChangeEvent<HTMLInputElement>){
         const elementID = (e.target as HTMLInputElement).id.split("-")[0]
@@ -113,7 +135,7 @@ export default function EmbedCodeGen(){
 
     return (
         <>
-        <Card title="(Insert Name) Embed Code Generator">
+        <Card title={`Embed Code Generator (${profile.name.toUpperCase()})`}>
             <CardSection title="Select a template or choose the gear icon to customize">
                 <div className="px-2 flex flex-wrap gap-2">
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){

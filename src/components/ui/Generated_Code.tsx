@@ -22,9 +22,9 @@ export default function GeneratedCode({inner_text}: Props){
     
     // Calls repeatedly, so will need to be fixed.
     function reset(){
-        if (intervalID === null){
-            setIntervalID(setInterval(function(){setCopyMessage([...copyMessage, copyMessage_Status.reset])}, 5000))
-        }
+        // if (intervalID === null){
+        //     setIntervalID(setInterval(function(){setCopyMessage([...copyMessage, copyMessage_Status.reset])}, 5000))
+        // }
     }
 
     function copyClick(text: string){
@@ -69,7 +69,7 @@ export default function GeneratedCode({inner_text}: Props){
                 <ButtonSecondary title="Copy" clickHandler={function(){copyClick(inner_text)}}/>
             </div>
             <div className="p-2">
-                <textarea className="resize-none w-full min-h-max p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
+                <textarea className="resize-none w-full p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
             </div>
         </Card>
     )
