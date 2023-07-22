@@ -1,36 +1,25 @@
 import { FormPropsData } from "../types/types";
+import modelsVimeo from "./models.Vimeo";
+import modelsVoicethread from "./models.VoiceThread";
+import modelsYoutube from "./models.YouTube";
+import modelsCanvas from "./models.canvas";
+import modelsCustom from "./models.custom";
+import modelsHtml5 from "./models.html5";
 
 export default function modelsRouter(settingsObject: FormPropsData){
-
-    let response = ""
     
     switch (settingsObject.name) {
         case "canvas":
-             response = "This is Canvas.";
-             break;
+            return modelsCanvas(settingsObject);
         case "custom":
-            response = "This is a custom video player.";
-            break;
+            return modelsCustom(settingsObject);
         case "html5":
-            response = "This is HTML5.";
-            break;
+            return modelsHtml5(settingsObject);
         case "vimeo":
-            response = "This is Vimeo.";
-            break;
+            return modelsVimeo(settingsObject);
         case "voicethread":
-            response = "This is VoiceThread.";
-            break;
+            return modelsVoicethread(settingsObject);
         case "youtube":
-            response = "This is Youtube.";
-            break;
-        default:
-            response = "Error: unknown video player.";
-            break;
+            return modelsYoutube(settingsObject);
     }
-
-    function formatResponse(succeeded: boolean, message: string, text: string){
-        return {succeeded: succeeded, message: message, text: text}
-    }
-
-    return formatResponse(true, "The operation succeeded", response)
 }
