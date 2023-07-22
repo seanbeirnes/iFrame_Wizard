@@ -3,7 +3,7 @@ import { Header, Main, Footer } from "../components/common/layout"
 import { ButtonSquare } from "../components/common/buttons"
 
 import Help from "../components/ui/Help";
-import EmbedCodeGen from "../components/ui/Embed_Code_Generator";
+import EmbedCodeGen from "../components/ui/EmbedCodeGen";
 
 export default function MainView(){
 

@@ -1,10 +1,13 @@
 import * as settings from "../../data/settings.json"
-import * as profiles from "../../data/embed_profiles.json"
-import { ChangeEvent, EventHandler, useState } from "react"
-import {Card, CardSection} from "../common/cards"
-import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons"
-import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options"
+import * as profilesJOSN from "../../data/embed_profiles.json"
+import { ChangeEvent, useState } from "react"
+import {Card, CardSection} from "../common/cards/index.tsx"
+import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
+import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
 import GeneratedCode from "./Generated_Code.tsx"
+import { ProfileSettingsData } from "./EmbedCodeGen.types.ts"
+
+const profiles: ProfileSettingsData = profilesJOSN
 
 export default function EmbedCodeGen(){
 
