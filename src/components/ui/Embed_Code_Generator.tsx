@@ -1,17 +1,32 @@
 import * as settings from "../../data/settings.json"
 import * as profiles from "../../data/embed_profiles.json"
-import { ChangeEvent, useState } from "react"
+import { ChangeEvent, EventHandler, useState } from "react"
 import {Card, CardSection} from "../common/cards"
-import {ButtonPrimary, ButtonSquare} from "../common/buttons"
+import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options"
 import GeneratedCode from "./Generated_Code.tsx"
 
 export default function EmbedCodeGen(){
 
-    const profile = profiles.voicethread
+    const profile = profiles.youtube
+
+    const [showMore, setShowMore] = useState(false)
+
+    function handleShowMore(){
+        setShowMore(!showMore)
+    }
+
+    const show_advanced: boolean = true
 
     const [formProps, setFormProps] = useState<{
         [index: string]: boolean | string;
+        allow_accelerometer: boolean;
+        allow_autoplay: boolean;
+        allow_clipboard_write: boolean;
+        allow_encrypted_media: boolean;
+        allow_gyroscope: boolean;
+        allow_picture_in_picture: boolean;
+        allow_web_share: boolean;
         allow_fullscreen: boolean;
         player_max_size: string;
         player_max_size_width: string;
@@ -22,6 +37,13 @@ export default function EmbedCodeGen(){
         use_custom_props_value: string;
         url: string;
     }>({
+        allow_accelerometer: profile.allow_accelerometer.active,
+        allow_autoplay: profile.allow_autoplay.active,
+        allow_clipboard_write: profile.allow_clipboard_write.active,
+        allow_encrypted_media: profile.allow_encrypted_media.active,
+        allow_gyroscope: profile.allow_gyroscope.active,
+        allow_picture_in_picture: profile.allow_picture_in_picture.active,
+        allow_web_share: profile.allow_web_share.active,
         allow_fullscreen: profile.allow_fullscreen.active,
         player_max_size: "default",
         player_max_size_width: "560",
@@ -99,14 +121,33 @@ export default function EmbedCodeGen(){
             </CardSection>
             <CardSection title="Set options">
                 <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
-                    {profile.allow_fullscreen.used && (<OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>)}
-                    {profile.turn_off_related_videos.used && (<OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>)}    
-                    {profile.use_modest_branding.used && (<OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>)}
+
+                    { profile.allow_fullscreen.used && (<OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>) }
+
+                    { profile.turn_off_related_videos.used && (<OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>) }    
+
+                    { profile.use_modest_branding.used && (<OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>) }
                     
                     <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
-
-                    {profile.use_custom_properties.used && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>)}
                     
+                    {(profile.allow_accelerometer.used && showMore) && <OptionsToggle label="Allow accelerometer:" id="allow_accelerometer" active={formProps.allow_accelerometer} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_autoplay.used && showMore) && <OptionsToggle label="Allow autoplay:" id="allow_autoplay" active={formProps.allow_autoplay} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_encrypted_media.used && showMore) && <OptionsToggle label="Allow encrypted media:" id="allow_encrypted_media" active={formProps.allow_encrypted_media} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_picture_in_picture.used && showMore) && <OptionsToggle label="Allow picture-in-picture:" id="allow_picture_in_picture" active={formProps.allow_picture_in_picture} clickHandler={handleFormProps_bool}/>}
+
+                    {(profile.allow_web_share.used && showMore) && <OptionsToggle label="Allow web share:" id="allow_web_share" active={formProps.allow_web_share} clickHandler={handleFormProps_bool}/>}
+
+
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>) }
+                    
+                    <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
                     <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
                 </div>
             </CardSection>
