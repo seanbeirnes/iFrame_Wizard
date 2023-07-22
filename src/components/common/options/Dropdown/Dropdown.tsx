@@ -10,7 +10,7 @@ type Props = {
 export default function OptionsPlayerWidth({ id, value, options, changeHandler}: Props){
 
     function MakeOption(value: string, text: string){
-        return <option value={value}>{text}</option>
+        return <option key={value} value={value}>{text}</option>
     }
 
     return (
