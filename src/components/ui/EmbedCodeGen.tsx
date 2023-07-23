@@ -132,7 +132,7 @@ export default function EmbedCodeGen(){
 
     return (
         <>
-        <Card title={`Embed Code Generator (${profile.name.toUpperCase()})`}>
+        <Card title={`Embed Code Generator [${profile.name.toUpperCase()} TEMPLATE]`}>
             <CardSection title="Select a template or choose the gear icon to customize">
                 <div className="px-2 flex flex-wrap gap-2">
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
