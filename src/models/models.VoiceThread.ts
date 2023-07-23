@@ -22,6 +22,11 @@ export default function modelsVoicethread(settingsObject: FormPropsData){
     settingsObject.name = "VoiceThread player";
     settingsObject.url = `${matchResult.urlStem}/app/player/?threadId=${matchResult.id}`;
 
+    settingsObject.allow_camera = true;
+    settingsObject.allow_camera_allow_list = matchResult.urlStem;
+    settingsObject.allow_microphone = true;
+    settingsObject.allow_microphone_allow_list = matchResult.urlStem;
+
     const embedCode = formatEmbedCode(settingsObject)
 
     return formatResponse(true, "operation succeeded", embedCode)
