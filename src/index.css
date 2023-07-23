@@ -40,6 +40,6 @@
     .animate-slide-in{
         opacity: 0;
         transform: translateX(-32px);
-        animation: 1s linear animate-slide-in forwards;
+        animation: 250ms linear animate-slide-in forwards;
     }
 }
