@@ -138,12 +138,12 @@ export default function EmbedCodeGen(){
                     <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
                         handleProfileChange("youtube")
                     }} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
+                    {/* <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
                         handleProfileChange("vimeo")
-                    }} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
+                    }} /> */}
+                    {/* <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
                         handleProfileChange("html5")
-                    }} />
+                    }} /> */}
                     <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
                         handleProfileChange("voicethread")
                     }} />
