@@ -25,10 +25,12 @@ export type FormPropsData = {
     allow_accelerometer: boolean;
     allow_autoplay: boolean;
     allow_camera: boolean;
+    allow_camera_allow_list: string;
     allow_clipboard_write: boolean;
     allow_encrypted_media: boolean;
     allow_gyroscope: boolean;
     allow_microphone: boolean;
+    allow_microphone_allow_list: string;
     allow_picture_in_picture: boolean;
     allow_web_share: boolean;
     allow_fullscreen: boolean;

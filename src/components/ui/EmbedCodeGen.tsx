@@ -30,9 +30,13 @@ export default function EmbedCodeGen(){
         name: profile.name,
         allow_accelerometer: profile.allow_accelerometer.active,
         allow_autoplay: profile.allow_autoplay.active,
+        allow_camera: profile.allow_camera.active,
+        allow_camera_allow_list: "",
         allow_clipboard_write: profile.allow_clipboard_write.active,
         allow_encrypted_media: profile.allow_encrypted_media.active,
         allow_gyroscope: profile.allow_gyroscope.active,
+        allow_microphone: profile.allow_microphone.active,
+        allow_microphone_allow_list: "",
         allow_picture_in_picture: profile.allow_picture_in_picture.active,
         allow_web_share: profile.allow_web_share.active,
         allow_fullscreen: profile.allow_fullscreen.active,
@@ -52,9 +56,13 @@ export default function EmbedCodeGen(){
                 name: profile.name,
                 allow_accelerometer: profile.allow_accelerometer.active,
                 allow_autoplay: profile.allow_autoplay.active,
+                allow_camera: profile.allow_camera.active,
+                allow_camera_allow_list: "",
                 allow_clipboard_write: profile.allow_clipboard_write.active,
                 allow_encrypted_media: profile.allow_encrypted_media.active,
                 allow_gyroscope: profile.allow_gyroscope.active,
+                allow_microphone: profile.allow_microphone.active,
+                allow_microphone_allow_list: "",
                 allow_picture_in_picture: profile.allow_picture_in_picture.active,
                 allow_web_share: profile.allow_web_share.active,
                 allow_fullscreen: profile.allow_fullscreen.active,
@@ -137,9 +145,9 @@ export default function EmbedCodeGen(){
                     <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
                         handleProfileChange("voicethread")
                     }} />
-                    <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
+                    {/* <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
                         handleProfileChange("canvas")
-                    }} />
+                    }} /> */}
                     <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){
                         handleProfileChange("custom")
                     }} />
@@ -164,6 +172,8 @@ export default function EmbedCodeGen(){
 
                     {(profile.allow_autoplay.used && showMore) && <OptionsToggle label="Allow autoplay:" id="allow_autoplay" active={formProps.allow_autoplay} clickHandler={handleFormProps_bool}/>}
 
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} changeHandler={handleFormProps_string}/>) }
+
                     {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
 
                     {(profile.allow_encrypted_media.used && showMore) && <OptionsToggle label="Allow encrypted media:" id="allow_encrypted_media" active={formProps.allow_encrypted_media} clickHandler={handleFormProps_bool}/>}
@@ -171,6 +181,8 @@ export default function EmbedCodeGen(){
                     { (profile.allow_fullscreen.used && showMore) && <OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/> }
 
                     {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
+
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} changeHandler={handleFormProps_string}/>) }
 
                     {(profile.allow_picture_in_picture.used && showMore) && <OptionsToggle label="Allow picture-in-picture:" id="allow_picture_in_picture" active={formProps.allow_picture_in_picture} clickHandler={handleFormProps_bool}/>}
 
