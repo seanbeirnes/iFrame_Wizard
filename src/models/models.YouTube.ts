@@ -1,4 +1,4 @@
-import { FormPropsData, EmbedCodeResponse } from "../types/types";
+import { FormPropsData } from "../types/types";
 import { formatResponse, formatEmbedCode } from "./common/utils";
 
 function validateURL(url: string){
