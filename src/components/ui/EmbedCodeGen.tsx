@@ -172,7 +172,7 @@ export default function EmbedCodeGen(){
 
                     {(profile.allow_autoplay.used && showMore) && <OptionsToggle label="Allow autoplay:" id="allow_autoplay" active={formProps.allow_autoplay} clickHandler={handleFormProps_bool}/>}
 
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} changeHandler={handleFormProps_string}/>) }
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if 'none'" changeHandler={handleFormProps_string}/>) }
 
                     {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
 
@@ -182,14 +182,14 @@ export default function EmbedCodeGen(){
 
                     {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
 
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} changeHandler={handleFormProps_string}/>) }
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if 'none'" changeHandler={handleFormProps_string}/>) }
 
                     {(profile.allow_picture_in_picture.used && showMore) && <OptionsToggle label="Allow picture-in-picture:" id="allow_picture_in_picture" active={formProps.allow_picture_in_picture} clickHandler={handleFormProps_bool}/>}
 
                     {(profile.allow_web_share.used && showMore) && <OptionsToggle label="Allow web share:" id="allow_web_share" active={formProps.allow_web_share} clickHandler={handleFormProps_bool}/>}
 
 
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} changeHandler={handleFormProps_string}/>) }
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} place_holder="Enter additional iFrame properties here" changeHandler={handleFormProps_string}/>) }
                     
                     <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
                     <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
