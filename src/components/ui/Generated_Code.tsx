@@ -44,6 +44,10 @@ export default function GeneratedCode({inner_text}: Props){
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     useEffect( () => {
+        if(inner_text){
+            copyClick(inner_text)
+        }
+
         if(textareaRef.current){
             textareaRef.current.style.height = 'auto';
             textareaRef.current.style.height = `${textareaRef.current.scrollHeight * 1.1}px `;
