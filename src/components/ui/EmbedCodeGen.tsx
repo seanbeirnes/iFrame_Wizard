@@ -40,6 +40,7 @@ export default function EmbedCodeGen(){
         allow_picture_in_picture: profile.allow_picture_in_picture.active,
         allow_web_share: profile.allow_web_share.active,
         allow_fullscreen: profile.allow_fullscreen.active,
+        allow_fullscreen_allow_list: "",
         player_max_size: "default",
         player_max_size_width: "560",
         player_max_size_height: "315",
@@ -66,6 +67,7 @@ export default function EmbedCodeGen(){
                 allow_picture_in_picture: profile.allow_picture_in_picture.active,
                 allow_web_share: profile.allow_web_share.active,
                 allow_fullscreen: profile.allow_fullscreen.active,
+                allow_fullscreen_allow_list: "",
                 player_max_size: "default",
                 player_max_size_width: "560",
                 player_max_size_height: "315",
@@ -172,17 +174,17 @@ export default function EmbedCodeGen(){
 
                     {(profile.allow_autoplay.used && showMore) && <OptionsToggle label="Allow autoplay:" id="allow_autoplay" active={formProps.allow_autoplay} clickHandler={handleFormProps_bool}/>}
 
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if 'none'" changeHandler={handleFormProps_string}/>) }
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/>) }
 
                     {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
 
                     {(profile.allow_encrypted_media.used && showMore) && <OptionsToggle label="Allow encrypted media:" id="allow_encrypted_media" active={formProps.allow_encrypted_media} clickHandler={handleFormProps_bool}/>}
 
-                    { (profile.allow_fullscreen.used && showMore) && <OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/> }
+                    { (profile.allow_fullscreen.used && showMore) && <OptionsTextInput label="Allow fullscreen:" toggle_id="allow_fullscreen" input_id="allow_fullscreen_allow_list" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool} value={formProps.allow_fullscreen_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/> }
 
                     {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
 
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if 'none'" changeHandler={handleFormProps_string}/>) }
+                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/>) }
 
                     {(profile.allow_picture_in_picture.used && showMore) && <OptionsToggle label="Allow picture-in-picture:" id="allow_picture_in_picture" active={formProps.allow_picture_in_picture} clickHandler={handleFormProps_bool}/>}
 

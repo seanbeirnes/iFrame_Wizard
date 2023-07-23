@@ -51,7 +51,11 @@ export function formatEmbedCode(settingsObject: FormPropsData){
 
     const picture_in_picture = settingsObject.allow_picture_in_picture ? "picture-in-picture; " : "";
     const web_share = settingsObject.allow_web_share ? "web-share; " : "";
-    const fullscreen = settingsObject.allow_fullscreen ? "fullscreen; " : "";
+
+    const fullscreen_allowed = settingsObject.allow_fullscreen ? "fullscreen; " : "";
+    const fullscreen_allowed_list = settingsObject.allow_fullscreen_allow_list
+    const fullscreen = fullscreen_allowed_list ? `fullscreen ${fullscreen_allowed_list}; ` : fullscreen_allowed;
+
     const player_max_size_width = formatWidth(settingsObject)
     const custom_props = settingsObject.use_custom_props ? settingsObject.use_custom_props_value : "";
 

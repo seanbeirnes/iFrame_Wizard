@@ -34,6 +34,7 @@ export type FormPropsData = {
     allow_picture_in_picture: boolean;
     allow_web_share: boolean;
     allow_fullscreen: boolean;
+    allow_fullscreen_allow_list: string;
     player_max_size: string;
     player_max_size_width: string;
     player_max_size_height: string;
