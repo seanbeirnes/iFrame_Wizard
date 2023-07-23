@@ -37,3 +37,7 @@ export type FormPropsData = {
     use_custom_props_value: string;
     url: string;
 }
+
+export type EmbedCodeResponse = {
+    [index: string]: boolean | string;
+}

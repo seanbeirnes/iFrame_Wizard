@@ -1,4 +1,4 @@
-import { FormPropsData } from "../types/types";
+import { EmbedCodeResponse, FormPropsData } from "../types/types";
 import modelsVimeo from "./models.Vimeo";
 import modelsVoicethread from "./models.VoiceThread";
 import modelsYoutube from "./models.YouTube";
@@ -22,5 +22,7 @@ export default function modelsRouter(obj: FormPropsData){
             return modelsVoicethread(settingsObject);
         case "youtube":
             return modelsYoutube(settingsObject);
+        default:
+            return modelsCustom(settingsObject);
     }
 }

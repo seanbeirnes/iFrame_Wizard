@@ -154,11 +154,9 @@ export default function EmbedCodeGen(){
             <CardSection title="Set options">
                 <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
 
-                    { profile.allow_fullscreen.used && (<OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/>) }
+                    { profile.turn_off_related_videos.used && <OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/> }    
 
-                    { profile.turn_off_related_videos.used && (<OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/>) }    
-
-                    { profile.use_modest_branding.used && (<OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/>) }
+                    { profile.use_modest_branding.used && <OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/> }
                     
                     <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
                     
@@ -169,6 +167,8 @@ export default function EmbedCodeGen(){
                     {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
 
                     {(profile.allow_encrypted_media.used && showMore) && <OptionsToggle label="Allow encrypted media:" id="allow_encrypted_media" active={formProps.allow_encrypted_media} clickHandler={handleFormProps_bool}/>}
+
+                    { (profile.allow_fullscreen.used && showMore) && <OptionsToggle label="Allow fullscreen:" id="allow_fullscreen" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool}/> }
 
                     {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
 
