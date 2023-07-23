@@ -6,9 +6,10 @@ import modelsCanvas from "./models.canvas";
 import modelsCustom from "./models.custom";
 import modelsHtml5 from "./models.html5";
 
-export default function modelsRouter(settingsObject: FormPropsData){
-    
-    switch (settingsObject.name) {
+export default function modelsRouter(obj: FormPropsData){
+    const settingsObject: FormPropsData = {...obj}
+
+    switch (obj.name) {
         case "canvas":
             return modelsCanvas(settingsObject);
         case "custom":
