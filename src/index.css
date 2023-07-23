@@ -42,4 +42,22 @@
         transform: translateX(-32px);
         animation: 250ms linear animate-slide-in forwards;
     }
+
+    @keyframes animate-border-glow{
+        0% {
+            border-color: #e5e7eb;
+        }
+
+        50%{
+            border-color: #38bff8;
+        }
+
+        100% {
+            border-color: #e5e7eb;
+        }
+    }
+
+    .animate-border-glow{
+        animation: 2000ms ease-in animate-border-glow forwards;
+    }
 }

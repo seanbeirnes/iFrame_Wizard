@@ -63,7 +63,7 @@ export default function GeneratedCode({inner_text}: Props){
                 <ButtonSecondary title="Copy" clickHandler={function(){copyClick(inner_text)}}/>
             </div>
             <div className="p-2">
-                <textarea ref={textareaRef} className="resize-none w-full p-2 shadow-inner rounded-md border-2 border-gray-200 border-soli focus:border-sky-400 outline-2 outline-sky-400" value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
+                <textarea ref={textareaRef} className={"resize-none w-full p-2 shadow-inner rounded-md border-2 border-solid border-gray-200 focus:border-sky-400 outline-2 outline-sky-400 " + (copyStatus.show && "animate-border-glow")} value={inner_text} placeholder="Generated embed code will appear here." readOnly></textarea>
             </div>
         </Card>
     )
