@@ -2,9 +2,11 @@ export type ProfileSettings = {
     name: string;
     allow_accelerometer: { used: boolean; active: boolean };
     allow_autoplay: { used: boolean; active: boolean };
+    allow_camera: { used: boolean; active: boolean };
     allow_clipboard_write: { used: boolean; active: boolean };
     allow_encrypted_media: { used: boolean; active: boolean };
     allow_gyroscope: { used: boolean; active: boolean };
+    allow_microphone: { used: boolean; active: boolean };
     allow_picture_in_picture: { used: boolean; active: boolean };
     allow_web_share: { used: boolean; active: boolean };
     allow_fullscreen: { used: boolean; active: boolean };
@@ -22,9 +24,11 @@ export type FormPropsData = {
     name: string;
     allow_accelerometer: boolean;
     allow_autoplay: boolean;
+    allow_camera: boolean;
     allow_clipboard_write: boolean;
     allow_encrypted_media: boolean;
     allow_gyroscope: boolean;
+    allow_microphone: boolean;
     allow_picture_in_picture: boolean;
     allow_web_share: boolean;
     allow_fullscreen: boolean;
