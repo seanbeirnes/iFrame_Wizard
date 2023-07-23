@@ -1,7 +1,28 @@
 import { FormPropsData } from "../types/types";
-import { formatResponse } from "./common/utils";
+import { formatResponse, formatEmbedCode } from "./common/utils";
 
-export default function modelsYoutube(settingsObject: FormPropsData){
-    const url = settingsObject.url
-    return formatResponse(true, "operation succeded", url + "VoiceThread")
+function validateURL(url: string){
+    const reURL = new RegExp(/(https?:\/\/[a-z0-9-]+\.voicethread\.com)\/share\/([0-9]{7,11})/)
+    const matchURL = url.match(reURL)
+    if(matchURL){
+        return {urlStem: matchURL[1], id: matchURL[2]}
+    }else{
+        return false
+    }
+}
+
+export default function modelsVoicethread(settingsObject: FormPropsData){
+
+    const matchResult = validateURL(settingsObject.url)
+
+    if(!matchResult){
+        return formatResponse(false, "URL or ID invalid", "")
+    }
+    // Need to add camera and microphone to "allow" options with optional url or none as additional values. Do not need to add "allowusermedia" it is a deprecated attribute.
+    settingsObject.name = "VoiceThread player";
+    settingsObject.url = `${matchResult.urlStem}/app/player/?threadId=${matchResult.id}`;
+
+    const embedCode = formatEmbedCode(settingsObject)
+
+    return formatResponse(true, "operation succeeded", embedCode)
 }

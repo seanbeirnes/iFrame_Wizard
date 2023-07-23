@@ -48,7 +48,7 @@ export function formatEmbedCode(settingsObject: FormPropsData){
     return (
     `<div style="max-width: ${player_max_size_width};">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-            <iframe style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" title="${settingsObject.name}" src="${settingsObject.url}" width="560" height="315" allow="${accelerometer} ${autoplay} ${clipboard_write} ${encrypted_media} ${fullscreen} ${gyroscope} ${picture_in_picture} ${web_share}" ${custom_props}></iframe>
+            <iframe style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" title="${settingsObject.name}" src="${settingsObject.url}" width="560" height="315" allow="${accelerometer} ${autoplay} ${clipboard_write} ${encrypted_media} ${fullscreen} ${gyroscope} ${picture_in_picture} ${web_share} ${custom_props}" ${fullscreen && "allowfullscreen"}></iframe>
         </div>
     </div>`
     )
