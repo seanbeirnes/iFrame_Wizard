@@ -1,7 +1,7 @@
 {
     "custom":{
-        "id": "youtube",
-        "name": "YouTube",
+        "id": "custom",
+        "name": "Custom",
         "componenets": [
             {
                 "type": "OptionsToggle",
@@ -94,8 +94,8 @@
         ]        
     },
     "voicethread":{
-        "id": "youtube",
-        "name": "YouTube",
+        "id": "voicethread",
+        "name": "VoiceThread",
         "componenets": [
             {
                 "type": "OptionsToggle",

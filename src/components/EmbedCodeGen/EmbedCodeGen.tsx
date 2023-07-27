@@ -179,7 +179,7 @@ export default function EmbedCodeGen(){
 
     return (
         <>      
-            <Card title={`Embed Code Generator [${template.name.toUpperCase()} TEMPLATE]`}>
+            <Card title={`Embed Code Generator [${template.name} Template]`}>
 
                 <CardSection title="Select a template or choose the gear icon to customize">
                     <div className="px-2 flex flex-wrap gap-2">
