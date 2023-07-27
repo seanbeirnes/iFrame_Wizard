@@ -13,7 +13,7 @@
             {"type": "OptionsTextInput", "label": "Allow microphone:", "id": "allow_microphone", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow picture-in-picture:", "id": "allow_picture_in_picture", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow web share:", "id": "allow_web_share", "place_holder": "", "show_more": true, "active": true},
-            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true}
+            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": false}
         ]      
     },
     "voicethread":{
@@ -30,7 +30,7 @@
             {"type": "OptionsTextInput", "label": "Allow microphone:", "id": "allow_microphone", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow picture-in-picture:", "id": "allow_picture_in_picture", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow web share:", "id": "allow_web_share", "place_holder": "", "show_more": true, "active": true},
-            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true}
+            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": false}
         ]        
     },
     "youtube":{
@@ -48,7 +48,7 @@
             {"type": "OptionsToggle", "label": "Allow gyroscope:", "id": "allow_gyroscope", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow picture-in-picture:", "id": "allow_picture_in_picture", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow web share:", "id": "allow_web_share", "place_holder": "", "show_more": true, "active": true},
-            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true}
+            {"type": "OptionsTextInput", "label": "Custom properties:", "id": "use_custom_props", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": false}
         ] 
     }
 }

@@ -19,13 +19,13 @@ function formatYouTubeURL(settingsObject: FormPropsData, videoID: string){
     let url = settingsObject.use_enhanced_privacy ? "https://www.youtube-nocookie.com/embed/" : "https://www.youtube.com/embed/";
     url += videoID;
 
-    (settingsObject.use_modest_branding || settingsObject.turn_off_related_videos) ? settingsObject.url += "?" : null;
+    (settingsObject.use_modest_branding || settingsObject.turn_off_related_videos) ? url += "?" : null;
 
-    settingsObject.turn_off_related_videos ? settingsObject.url += "rel=0" : null;
+    settingsObject.turn_off_related_videos ? url += "rel=0" : null;
 
-    (settingsObject.use_modest_branding && settingsObject.turn_off_related_videos) ? settingsObject.url += "&" : null;
+    (settingsObject.use_modest_branding && settingsObject.turn_off_related_videos) ? url += "&" : null;
 
-    settingsObject.use_modest_branding ? settingsObject.url += "modestbranding=1" : null;
+    settingsObject.use_modest_branding ? url += "modestbranding=1" : null;
 
     return url
 }
@@ -39,9 +39,9 @@ function formatAllowList(settingsObject: FormPropsData){
     const gyroscope = settingsObject.allow_gyroscope ? "gyroscope; " : "";
 
     const picture_in_picture = settingsObject.allow_picture_in_picture ? "picture-in-picture; " : "";
-    const web_share = settingsObject.allow_web_share ? "web-share; " : "";
+    const web_share = settingsObject.allow_web_share ? "web-share" : "";
 
-    const custom_props = settingsObject.use_custom_props ? settingsObject.use_custom_props_value : "";
+    const custom_props = settingsObject.use_custom_props ? settingsObject.use_custom_props_text : "";
 
     return `${accelerometer}${autoplay}${clipboard_write}${encrypted_media}${gyroscope}${picture_in_picture}${web_share}${custom_props}`
 }

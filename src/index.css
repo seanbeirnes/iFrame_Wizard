@@ -58,6 +58,6 @@
     }
 
     .animate-border-glow{
-        animation: 2000ms ease-in animate-border-glow forwards;
+        animation: 2000ms ease-out animate-border-glow forwards;
     }
 }
