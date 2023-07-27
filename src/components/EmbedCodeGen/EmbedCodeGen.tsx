@@ -72,10 +72,6 @@ export default function EmbedCodeGen(){
         getDefaultFormProps()
     );
 
-    useEffect( () => {
-        setFormProps( getDefaultFormProps() )
-    }, [useProfile])
-
     function handleFormProps_string(e: ChangeEvent<HTMLInputElement>){
         const elementID = (e.target as HTMLInputElement).id.split("-")[0]
 
@@ -151,8 +147,7 @@ export default function EmbedCodeGen(){
         }
     }
     
-    function makeOptionsComponenets(){
-        const template: Template = templates.youtube
+    function makeOptionsComponenets(template: Template){
         const componenets = []
         for(const i in template.componenets){
             componenets.push( makeOptionsComponent( template.componenets[i] ) )
@@ -164,7 +159,9 @@ export default function EmbedCodeGen(){
         )
     }
 
-
+    useEffect( () => {
+        setFormProps( getDefaultFormProps() )
+    }, [useProfile])
 
     const [embedCode, setEmbedCode] = useState<{
         [index: string]: string
@@ -219,7 +216,7 @@ export default function EmbedCodeGen(){
                         
                         <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>   
 
-                        {makeOptionsComponenets()}
+                        {makeOptionsComponenets(template)}
                         
                         <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
 

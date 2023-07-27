@@ -111,7 +111,7 @@
                 "id": "allow_autoplay",
                 "place_holder": "",
                 "show_more": true,
-                "active": true
+                "active": false
             },
             {
                 "type": "OptionsTextInput",
