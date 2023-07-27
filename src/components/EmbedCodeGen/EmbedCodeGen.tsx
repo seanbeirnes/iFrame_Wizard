@@ -1,21 +1,20 @@
 import * as settings from "../../data/settings.json"
-import * as templates from "../../data/templates.json"
-import * as profilesJOSN from "../../data/embed_profiles.json"
-import { ChangeEvent, useState, useEffect } from "react"
+import * as templatesJSON from "../../data/templates.json"
+import { ChangeEvent, useState, useEffect} from "react"
 import {Card, CardSection} from "../common/cards/index.tsx"
 import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
-import GeneratedCode from "./Generated_Code.tsx"
-import { FormPropsData, ProfileSettingsData } from "../../types/types.ts"
+import GeneratedCode from "../ui/Generated_Code.tsx"
+import { TemplatesData, Template, TemplateComponent, FormPropsData } from "../../types/types.ts"
 import modelsRouter from "../../models/modelsRouter.ts"
 
-const profiles: ProfileSettingsData = profilesJOSN
+const templates: TemplatesData = templatesJSON
 
 export default function EmbedCodeGen(){
 
     const [useProfile, setUseProfile] = useState("youtube")
 
-    let profile = profiles[useProfile]
+    let template = templates[useProfile]
 
     function handleProfileChange(newProfile: string){
         setUseProfile(newProfile)
@@ -27,58 +26,54 @@ export default function EmbedCodeGen(){
         setShowMore(!showMore)
     }
 
-    const [formProps, setFormProps] = useState<FormPropsData>({
-        name: profile.name,
-        allow_accelerometer: profile.allow_accelerometer.active,
-        allow_autoplay: profile.allow_autoplay.active,
-        allow_camera: profile.allow_camera.active,
-        allow_camera_text: "",
-        allow_clipboard_write: profile.allow_clipboard_write.active,
-        allow_encrypted_media: profile.allow_encrypted_media.active,
-        allow_gyroscope: profile.allow_gyroscope.active,
-        allow_microphone: profile.allow_microphone.active,
-        allow_microphone_text: "",
-        allow_picture_in_picture: profile.allow_picture_in_picture.active,
-        allow_web_share: profile.allow_web_share.active,
-        allow_fullscreen: profile.allow_fullscreen.active,
-        allow_fullscreen_text: "",
-        player_max_size: "default",
-        player_max_size_width: "560",
-        player_max_size_height: "315",
-        use_modest_branding: profile.use_modest_branding.active,
-        turn_off_related_videos: profile.use_modest_branding.active,
-        use_custom_props: profile.use_custom_properties.active,
-        use_custom_props_text: "",
-        url: "",
-    });
+    function findComponentByID(template: Template, id: string){
+        for(const i in template.componenets){
+            const component = template.componenets[i]
+            if(id === component.id){
+                return component
+            }
+        }
+        return null;
+    }
+
+    function isComponentActive(template: Template, id: string){
+        const component = findComponentByID(template, id)
+        return component ? component.active : false;
+    }
+
+    function getDefaultFormProps(){
+        return ({
+            name: template.name,
+            allow_accelerometer: isComponentActive(template, "allow_accelerometer"),
+            allow_autoplay: isComponentActive(template, "allow_autoplay"),
+            allow_camera: isComponentActive(template, "allow_camera"),
+            allow_camera_text: "",
+            allow_clipboard_write: isComponentActive(template, "allow_clipboard_write"),
+            allow_encrypted_media: isComponentActive(template, "allow_encrypted_media"),
+            allow_gyroscope: isComponentActive(template, "allow_gyroscope"),
+            allow_microphone: isComponentActive(template, "allow_microphone"),
+            allow_microphone_text: "",
+            allow_picture_in_picture: isComponentActive(template, "allow_picture_in_picture"),
+            allow_web_share: isComponentActive(template, "allow_web_share"),
+            allow_fullscreen:isComponentActive(template, "allow_fullscreen"),
+            allow_fullscreen_text: "",
+            player_max_size: "default",
+            player_max_size_width: "560",
+            player_max_size_height: "315",
+            use_modest_branding: isComponentActive(template, "use_modest_branding"),
+            turn_off_related_videos: isComponentActive(template, "turn_off_related_videos"),
+            use_custom_props: isComponentActive(template, "use_custom_props"),
+            use_custom_props_text: "",
+            url: "",
+        })
+    }
+
+    const [formProps, setFormProps] = useState<FormPropsData>(
+        getDefaultFormProps()
+    );
 
     useEffect( () => {
-        setFormProps(
-            {
-                name: profile.name,
-                allow_accelerometer: profile.allow_accelerometer.active,
-                allow_autoplay: profile.allow_autoplay.active,
-                allow_camera: profile.allow_camera.active,
-                allow_camera_text: "",
-                allow_clipboard_write: profile.allow_clipboard_write.active,
-                allow_encrypted_media: profile.allow_encrypted_media.active,
-                allow_gyroscope: profile.allow_gyroscope.active,
-                allow_microphone: profile.allow_microphone.active,
-                allow_microphone_text: "",
-                allow_picture_in_picture: profile.allow_picture_in_picture.active,
-                allow_web_share: profile.allow_web_share.active,
-                allow_fullscreen: profile.allow_fullscreen.active,
-                allow_fullscreen_text: "",
-                player_max_size: "default",
-                player_max_size_width: "560",
-                player_max_size_height: "315",
-                use_modest_branding: profile.use_modest_branding.active,
-                turn_off_related_videos: profile.use_modest_branding.active,
-                use_custom_props: profile.use_custom_properties.active,
-                use_custom_props_text: "",
-                url: "",
-            }
-        )
+        setFormProps( getDefaultFormProps() )
     }, [useProfile])
 
     function handleFormProps_string(e: ChangeEvent<HTMLInputElement>){
@@ -118,30 +113,30 @@ export default function EmbedCodeGen(){
     }
 
 
-    function makeOptionsToggle(component){
+    function makeOptionsToggle(component: TemplateComponent){
         const label = component.label
         const id = component.id
         const show_more = component.show_more
     
         return (
-            show_more ? showMore && <OptionsToggle label={label} id={id} active={formProps[id]} clickHandler={handleFormProps_bool}/> : <OptionsToggle label={label} id={id} active={formProps[id]} clickHandler={handleFormProps_bool}/>
+            show_more ? showMore && <OptionsToggle label={label} id={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/> : <OptionsToggle label={label} id={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/>
         )
     }
 
-    function makeOptionsTextInput(component){
+    function makeOptionsTextInput(component: TemplateComponent){
         const label = component.label
         const id = component.id
         const place_holder = component.place_holder
         const show_more = component.show_more
 
         return(
-            show_more ?  showMore && <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id]} clickHandler={handleFormProps_bool} value={formProps[id + "_text"]} place_holder={place_holder} changeHandler={handleFormProps_string}/> : <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id]} clickHandler={handleFormProps_bool} value={formProps[id + "_text"]} place_holder={place_holder} changeHandler={handleFormProps_string}/>
+            show_more ?  showMore && <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/> : <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/>
         )
     }
 
-    function makeOptionsComponent(component){
+    function makeOptionsComponent(component: TemplateComponent){
 
-        const type = component.type
+        const type= component.type
 
         switch (type) {
 
@@ -157,7 +152,7 @@ export default function EmbedCodeGen(){
     }
     
     function makeOptionsComponenets(){
-        const template = templates.youtube
+        const template: Template = templates.youtube
         const componenets = []
         for(const i in template.componenets){
             componenets.push( makeOptionsComponent( template.componenets[i] ) )
@@ -187,7 +182,7 @@ export default function EmbedCodeGen(){
 
     return (
         <>      
-            <Card title={`Embed Code Generator [${profile.name.toUpperCase()} TEMPLATE]`}>
+            <Card title={`Embed Code Generator [${template.name.toUpperCase()} TEMPLATE]`}>
 
                 <CardSection title="Select a template or choose the gear icon to customize">
                     <div className="px-2 flex flex-wrap gap-2">
