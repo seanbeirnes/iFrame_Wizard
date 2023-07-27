@@ -37,6 +37,7 @@ export type FormPropsData = {
     player_max_size_width: string;
     player_max_size_height: string;
     use_modest_branding: boolean;
+    use_enhanced_privacy: boolean;
     turn_off_related_videos: boolean;
     use_custom_props: boolean;
     use_custom_props_text: string;

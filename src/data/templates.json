@@ -39,6 +39,7 @@
         "componenets": [
             {"type": "OptionsToggle", "label": "Turn off related videos:", "id": "turn_off_related_videos", "place_holder": "", "show_more": false, "active": true},
             {"type": "OptionsToggle", "label": "Use modest branding:", "id": "use_modest_branding", "place_holder": "", "show_more": false, "active": true},
+            {"type": "OptionsToggle", "label": "Use enhanced privacy settings:", "id": "use_enhanced_privacy", "place_holder": "", "show_more": false, "active": true},
             {"type": "OptionsToggle", "label": "Allow accelerometer:", "id": "allow_accelerometer", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsToggle", "label": "Allow autoplay:", "id": "allow_autoplay", "place_holder": "", "show_more": true, "active": true},
             {"type": "OptionsTextInput", "label": "Allow camera:", "id": "allow_camera", "place_holder": "Enter allowed list of URLs separated by spaces. Leave blank if none.", "show_more": true, "active": true},

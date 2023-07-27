@@ -61,6 +61,7 @@ export default function EmbedCodeGen(){
             player_max_size_width: "560",
             player_max_size_height: "315",
             use_modest_branding: isComponentActive(template, "use_modest_branding"),
+            use_enhanced_privacy: isComponentActive(template, "use_enhanced_privacy"),
             turn_off_related_videos: isComponentActive(template, "turn_off_related_videos"),
             use_custom_props: isComponentActive(template, "use_custom_props"),
             use_custom_props_text: "",
