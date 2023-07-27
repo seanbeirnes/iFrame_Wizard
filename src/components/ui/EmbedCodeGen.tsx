@@ -186,49 +186,56 @@ export default function EmbedCodeGen(){
     }
 
     return (
-        <>
-        <Card title={`Embed Code Generator [${profile.name.toUpperCase()} TEMPLATE]`}>
-            <CardSection title="Select a template or choose the gear icon to customize">
-                <div className="px-2 flex flex-wrap gap-2">
-                    <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
-                        handleProfileChange("youtube")
-                    }} />
-                    {/* <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
-                        handleProfileChange("vimeo")
-                    }} /> */}
-                    {/* <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
-                        handleProfileChange("html5")
-                    }} /> */}
-                    <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
-                        handleProfileChange("voicethread")
-                    }} />
-                    {/* <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
-                        handleProfileChange("canvas")
-                    }} /> */}
-                    <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){
-                        handleProfileChange("custom")
-                    }} />
-                </div>
-            </CardSection>
-            <CardSection title="Add the iFrame Source">
-                <div className="px-2">
-                    <label htmlFor="add-url"></label>
-                    <input className="p-1 w-full border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-sm text-gray-500" type="text" id="url" name="add-url" placeholder="Paste or type in source URL (or ID for videos)" value={formProps.url} onChange={handleFormProps_string}/>
-                </div>
-            </CardSection>
-            <CardSection title="Set options">
-                <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
-                    
-                    <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>   
+        <>      
+            <Card title={`Embed Code Generator [${profile.name.toUpperCase()} TEMPLATE]`}>
 
-                    {makeOptionsComponenets()}
-                    
-                    <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
-                    <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
-                </div>
-            </CardSection>
-        </Card>
-        <GeneratedCode inner_text={embedCode.text}/>
+                <CardSection title="Select a template or choose the gear icon to customize">
+                    <div className="px-2 flex flex-wrap gap-2">
+                        <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
+                            handleProfileChange("youtube")
+                        }} />
+                        {/* <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
+                            handleProfileChange("vimeo")
+                        }} /> */}
+                        {/* <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
+                            handleProfileChange("html5")
+                        }} /> */}
+                        <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
+                            handleProfileChange("voicethread")
+                        }} />
+                        {/* <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
+                            handleProfileChange("canvas")
+                        }} /> */}
+                        <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){
+                            handleProfileChange("custom")
+                        }} />
+                    </div>
+                </CardSection>
+
+                <CardSection title="Add the iFrame Source">
+                    <div className="px-2">
+                        <label htmlFor="add-url"></label>
+                        <input className="p-1 w-full border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-sm text-gray-500" type="text" id="url" name="add-url" placeholder="Paste or type in source URL (or ID for videos)" value={formProps.url} onChange={handleFormProps_string}/>
+                    </div>
+                </CardSection>
+
+                <CardSection title="Set options">
+                    <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
+                        
+                        <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>   
+
+                        {makeOptionsComponenets()}
+                        
+                        <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
+
+                        <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
+                    </div>
+                </CardSection>
+
+            </Card>
+
+            <GeneratedCode inner_text={embedCode.text}/>
+
         </>
     )
 }
