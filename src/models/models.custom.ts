@@ -1,5 +1,5 @@
 import { FormPropsData } from "../types/types";
-import { formatResponse, formatEmbedCode } from "./shared/utils";
+import { formatResponse, formatEmbedCode_Rigid } from "./shared/utils";
 
 function validateURL(url: string){
     const reURL = new RegExp(/^(?:https?:\/\/)(?:[a-z0-9\-]+\.){1,}[a-z]{2,}(?:\/.*)?$/)
@@ -15,7 +15,7 @@ export default function modelsCustom(settingsObject: FormPropsData){
         return formatResponse(false, "URL is invalid.", "")
     }
 
-    const embedCode = formatEmbedCode(settingsObject)
+    const embedCode = formatEmbedCode_Rigid(settingsObject)
 
     return formatResponse(true, "operation succeeded", embedCode)
 }

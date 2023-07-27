@@ -9,7 +9,7 @@ import modelsHtml5 from "./models.html5";
 export default function modelsRouter(obj: FormPropsData){
     const settingsObject: FormPropsData = {...obj}
 
-    switch (obj.name) {
+    switch (obj.id) {
         case "canvas":
             return modelsCanvas(settingsObject);
         case "custom":

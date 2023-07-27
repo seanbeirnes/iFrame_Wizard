@@ -5,7 +5,7 @@ export function formatResponse(succeeded: boolean, message: string, text: string
     return {succeeded: succeeded, message: message, text: text}
 }
 
-export function formatWidth(settingsObject: FormPropsData){
+function formatWidth(settingsObject: FormPropsData){
 
     function getWidthSelection(){
 
@@ -33,7 +33,8 @@ export function formatWidth(settingsObject: FormPropsData){
     }
 }
 
-export function formatEmbedCode(settingsObject: FormPropsData){
+
+export function formatAllowList(settingsObject: FormPropsData){
     const accelerometer = settingsObject.allow_accelerometer ? "accelerometer; " : "";
     const autoplay = settingsObject.allow_autoplay ? "autoplay; " : "";
 
@@ -56,14 +57,39 @@ export function formatEmbedCode(settingsObject: FormPropsData){
     const fullscreen_allowed_list = settingsObject.allow_fullscreen_allow_list
     const fullscreen = fullscreen_allowed_list ? `fullscreen ${fullscreen_allowed_list}; ` : fullscreen_allowed;
 
-    const player_max_size_width = formatWidth(settingsObject)
     const custom_props = settingsObject.use_custom_props ? settingsObject.use_custom_props_value : "";
 
+    return `${accelerometer}${autoplay}${camera}${clipboard_write}${encrypted_media}${fullscreen}${gyroscope}${microphone}${picture_in_picture}${web_share}${custom_props}`
+}
+
+export function formatAllowParams(allowFullScreen=false, allowUserMedia=false){
+    let params = ""
+    allowFullScreen ? params += "allowfullscreen " : null;
+    allowUserMedia ? params += "allowusermedia " : null;
+
+    return params
+}
+
+export function formatEmbedCode_Rigid(settingsObject: FormPropsData){
+    
     return (
-    `<div style="max-width: ${player_max_size_width};">
+    `<div style="max-width: ${formatWidth(settingsObject)};">
         <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-            <iframe style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" title="${settingsObject.name}" src="${settingsObject.url}" width="560" height="315" allow="${accelerometer}${autoplay}${camera}${clipboard_write}${encrypted_media}${fullscreen}${gyroscope}${microphone}${picture_in_picture}${web_share}${custom_props}" ${fullscreen && "allowfullscreen"} ${(camera || microphone) && "allowusermedia"} ></iframe>
+            <iframe style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" title="${settingsObject.name}" src="${settingsObject.url}" width="560" height="315" allow="${formatAllowList(settingsObject)}" ${formatAllowParams(settingsObject.allow_fullscreen, (settingsObject.allow_camera || settingsObject.allow_microphone))}></iframe>
         </div>
     </div>`
     )
 }
+
+export function formatEmbedCode_Flex(settingsObject: FormPropsData, title: string, url: string, allow_list: string, allow_params: string){
+    const player_max_size_width = formatWidth(settingsObject)
+
+    return (
+    `<div style="max-width: ${player_max_size_width};">
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+            <iframe style="border:none; position: absolute; top: 0; left: 0; height: 100%; width: 100%;" title="${title}" src="${url}" width="560" height="315" ${allow_list && 'allow="' + allow_list + '"'} ${allow_params && allow_params} ></iframe>
+        </div>
+    </div>`
+    )
+}
+

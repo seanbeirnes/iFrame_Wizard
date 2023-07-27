@@ -19,7 +19,7 @@ export type TemplatesData = {
 
 export type FormPropsData = {
     [index: string]: boolean | string;
-    name: string;
+    id: string;
     allow_accelerometer: boolean;
     allow_autoplay: boolean;
     allow_camera: boolean;

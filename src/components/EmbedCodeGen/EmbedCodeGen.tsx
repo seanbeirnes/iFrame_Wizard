@@ -43,7 +43,7 @@ export default function EmbedCodeGen(){
 
     function getDefaultFormProps(){
         return ({
-            name: template.name,
+            id: template.id,
             allow_accelerometer: isComponentActive(template, "allow_accelerometer"),
             allow_autoplay: isComponentActive(template, "allow_autoplay"),
             allow_camera: isComponentActive(template, "allow_camera"),
