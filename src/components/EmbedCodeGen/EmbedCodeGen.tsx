@@ -116,7 +116,7 @@ export default function EmbedCodeGen(){
         const show_more = component.show_more
     
         return (
-            show_more ? showMore && <OptionsToggle label={label} id={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/> : <OptionsToggle label={label} id={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/>
+            show_more ? showMore && <OptionsToggle label={label} id={id} key={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/> : <OptionsToggle label={label} id={id} key={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool}/>
         )
     }
 
@@ -127,7 +127,7 @@ export default function EmbedCodeGen(){
         const show_more = component.show_more
 
         return(
-            show_more ?  showMore && <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/> : <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/>
+            show_more ?  showMore && <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} key={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/> : <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} key={id} active={formProps[id] as boolean} clickHandler={handleFormProps_bool} value={formProps[id + "_text"] as string} place_holder={place_holder} changeHandler={handleFormProps_string}/>
         )
     }
 

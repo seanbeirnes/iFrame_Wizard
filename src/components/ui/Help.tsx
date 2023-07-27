@@ -9,7 +9,7 @@ export default function Help(){
         </CardSection>
         <CardSection title="Directions">
             <ol className="mx-4 mb-2 text-xs text-gray-700 list-decimal" >
-                <li>Copy and paste the source link into the space provided. For YouTube and VoiceThread, you can also just use the ID.</li>
+                <li>Copy and paste the source link into the space provided. For YouTube, you can also use only the ID.</li>
                 <li>Set the options you would like. You can also select <strong>Show More Options</strong> to see some advanced settings.</li>
                 <li>Select <strong>Generate Embed Code</strong> and the code will appear in the "Generated Code" area below. It will also be automatically copied to your clipboard.</li>
             </ol>
