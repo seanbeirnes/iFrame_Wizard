@@ -1,4 +1,5 @@
 import * as settings from "../../data/settings.json"
+import * as templates from "../../data/templates.json"
 import * as profilesJOSN from "../../data/embed_profiles.json"
 import { ChangeEvent, useState, useEffect } from "react"
 import {Card, CardSection} from "../common/cards/index.tsx"
@@ -31,23 +32,23 @@ export default function EmbedCodeGen(){
         allow_accelerometer: profile.allow_accelerometer.active,
         allow_autoplay: profile.allow_autoplay.active,
         allow_camera: profile.allow_camera.active,
-        allow_camera_allow_list: "",
+        allow_camera_text: "",
         allow_clipboard_write: profile.allow_clipboard_write.active,
         allow_encrypted_media: profile.allow_encrypted_media.active,
         allow_gyroscope: profile.allow_gyroscope.active,
         allow_microphone: profile.allow_microphone.active,
-        allow_microphone_allow_list: "",
+        allow_microphone_text: "",
         allow_picture_in_picture: profile.allow_picture_in_picture.active,
         allow_web_share: profile.allow_web_share.active,
         allow_fullscreen: profile.allow_fullscreen.active,
-        allow_fullscreen_allow_list: "",
+        allow_fullscreen_text: "",
         player_max_size: "default",
         player_max_size_width: "560",
         player_max_size_height: "315",
         use_modest_branding: profile.use_modest_branding.active,
         turn_off_related_videos: profile.use_modest_branding.active,
         use_custom_props: profile.use_custom_properties.active,
-        use_custom_props_value: "",
+        use_custom_props_text: "",
         url: "",
     });
 
@@ -58,23 +59,23 @@ export default function EmbedCodeGen(){
                 allow_accelerometer: profile.allow_accelerometer.active,
                 allow_autoplay: profile.allow_autoplay.active,
                 allow_camera: profile.allow_camera.active,
-                allow_camera_allow_list: "",
+                allow_camera_text: "",
                 allow_clipboard_write: profile.allow_clipboard_write.active,
                 allow_encrypted_media: profile.allow_encrypted_media.active,
                 allow_gyroscope: profile.allow_gyroscope.active,
                 allow_microphone: profile.allow_microphone.active,
-                allow_microphone_allow_list: "",
+                allow_microphone_text: "",
                 allow_picture_in_picture: profile.allow_picture_in_picture.active,
                 allow_web_share: profile.allow_web_share.active,
                 allow_fullscreen: profile.allow_fullscreen.active,
-                allow_fullscreen_allow_list: "",
+                allow_fullscreen_text: "",
                 player_max_size: "default",
                 player_max_size_width: "560",
                 player_max_size_height: "315",
                 use_modest_branding: profile.use_modest_branding.active,
                 turn_off_related_videos: profile.use_modest_branding.active,
                 use_custom_props: profile.use_custom_properties.active,
-                use_custom_props_value: "",
+                use_custom_props_text: "",
                 url: "",
             }
         )
@@ -115,6 +116,60 @@ export default function EmbedCodeGen(){
             }))
         }
     }
+
+
+    function makeOptionsToggle(component){
+        const label = component.label
+        const id = component.id
+        const show_more = component.show_more
+    
+        return (
+            show_more ? showMore && <OptionsToggle label={label} id={id} active={formProps[id]} clickHandler={handleFormProps_bool}/> : <OptionsToggle label={label} id={id} active={formProps[id]} clickHandler={handleFormProps_bool}/>
+        )
+    }
+
+    function makeOptionsTextInput(component){
+        const label = component.label
+        const id = component.id
+        const place_holder = component.place_holder
+        const show_more = component.show_more
+
+        return(
+            show_more ?  showMore && <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id]} clickHandler={handleFormProps_bool} value={formProps[id + "_text"]} place_holder={place_holder} changeHandler={handleFormProps_string}/> : <OptionsTextInput label={label} toggle_id={id} input_id={id + "_text"} active={formProps[id]} clickHandler={handleFormProps_bool} value={formProps[id + "_text"]} place_holder={place_holder} changeHandler={handleFormProps_string}/>
+        )
+    }
+
+    function makeOptionsComponent(component){
+
+        const type = component.type
+
+        switch (type) {
+
+            case "OptionsToggle":
+                return makeOptionsToggle(component)
+            
+            case "OptionsTextInput":
+                return makeOptionsTextInput(component)
+
+            default:
+                return (<></>)
+        }
+    }
+    
+    function makeOptionsComponenets(){
+        const template = templates.youtube
+        const componenets = []
+        for(const i in template.componenets){
+            componenets.push( makeOptionsComponent( template.componenets[i] ) )
+        }
+        return (
+            <>
+            {componenets}
+            </>
+        )
+    }
+
+
 
     const [embedCode, setEmbedCode] = useState<{
         [index: string]: string
@@ -163,35 +218,10 @@ export default function EmbedCodeGen(){
             </CardSection>
             <CardSection title="Set options">
                 <div className="px-2 grid grid-flow-row grid-cols-1 gap-2">
-
-                    { profile.turn_off_related_videos.used && <OptionsToggle label="Turn off related videos:" id="turn_off_related_videos" active={formProps.turn_off_related_videos} clickHandler={handleFormProps_bool}/> }    
-
-                    { profile.use_modest_branding.used && <OptionsToggle label="Use modest branding:" id="use_modest_branding" active={formProps.use_modest_branding} clickHandler={handleFormProps_bool}/> }
                     
-                    <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>
-                    
-                    {(profile.allow_accelerometer.used && showMore) && <OptionsToggle label="Allow accelerometer:" id="allow_accelerometer" active={formProps.allow_accelerometer} clickHandler={handleFormProps_bool}/>}
+                    <OptionsDropdown label="Player maximum size:" id="player_max_size" value={formProps.player_max_size} options={settings.player_width_selction_options} width={formProps.player_max_size_width} height={formProps.player_max_size_height} changeHandler={handleFormProps_string}/>   
 
-                    {(profile.allow_autoplay.used && showMore) && <OptionsToggle label="Allow autoplay:" id="allow_autoplay" active={formProps.allow_autoplay} clickHandler={handleFormProps_bool}/>}
-
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow camera:" toggle_id="allow_camera" input_id="allow_camera_allow_list" active={formProps.allow_camera} clickHandler={handleFormProps_bool} value={formProps.allow_camera_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/>) }
-
-                    {(profile.allow_clipboard_write.used && showMore) && <OptionsToggle label="Allow clipboard write:" id="allow_clipboard_write" active={formProps.allow_clipboard_write} clickHandler={handleFormProps_bool}/>}
-
-                    {(profile.allow_encrypted_media.used && showMore) && <OptionsToggle label="Allow encrypted media:" id="allow_encrypted_media" active={formProps.allow_encrypted_media} clickHandler={handleFormProps_bool}/>}
-
-                    { (profile.allow_fullscreen.used && showMore) && <OptionsTextInput label="Allow fullscreen:" toggle_id="allow_fullscreen" input_id="allow_fullscreen_allow_list" active={formProps.allow_fullscreen} clickHandler={handleFormProps_bool} value={formProps.allow_fullscreen_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/> }
-
-                    {(profile.allow_gyroscope.used && showMore) && <OptionsToggle label="Allow gyroscope:" id="allow_gyroscope" active={formProps.allow_gyroscope} clickHandler={handleFormProps_bool}/>}
-
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Allow microphone:" toggle_id="allow_microphone" input_id="allow_microphone_allow_list" active={formProps.allow_microphone} clickHandler={handleFormProps_bool} value={formProps.allow_microphone_allow_list} place_holder="Enter allowed list of URLs separated by spaces. Leave blank if none." changeHandler={handleFormProps_string}/>) }
-
-                    {(profile.allow_picture_in_picture.used && showMore) && <OptionsToggle label="Allow picture-in-picture:" id="allow_picture_in_picture" active={formProps.allow_picture_in_picture} clickHandler={handleFormProps_bool}/>}
-
-                    {(profile.allow_web_share.used && showMore) && <OptionsToggle label="Allow web share:" id="allow_web_share" active={formProps.allow_web_share} clickHandler={handleFormProps_bool}/>}
-
-
-                    { (profile.use_custom_properties.used && showMore) && (<OptionsTextInput label="Custom properties:" toggle_id="use_custom_props" input_id="use_custom_props_value" active={formProps.use_custom_props} clickHandler={handleFormProps_bool} value={formProps.use_custom_props_value} place_holder="Enter additional iFrame properties here" changeHandler={handleFormProps_string}/>) }
+                    {makeOptionsComponenets()}
                     
                     <ButtonSecondary title={showMore ? "Show Less Options" : "Show More Options"} clickHandler={handleShowMore} />
                     <ButtonPrimary title="Generate Embed Code" clickHandler={submitHandler}/>
