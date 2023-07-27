@@ -1,5 +1,5 @@
 import { FormPropsData } from "../types/types";
-import { formatResponse, formatEmbedCode } from "./common/utils";
+import { formatResponse, formatEmbedCode } from "./shared/utils";
 
 function validateURL(url: string){
     const reURL = new RegExp(/^(?:https?:\/\/)(?:[a-z0-9\-]+\.){1,}[a-z]{2,}(?:\/.*)?$/)
