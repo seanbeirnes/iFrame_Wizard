@@ -184,22 +184,22 @@ export default function EmbedCodeGen(){
 
                 <CardSection title="Select a template or choose the gear icon to customize">
                     <div className="px-2 flex flex-wrap gap-2">
-                        <ButtonSquare src="./src/assets/images/brand-logos/youtube-logo.svg" clickHandler={function(){
+                        <ButtonSquare src="/public/images/brand-logos/youtube-logo.svg" clickHandler={function(){
                             handleProfileChange("youtube")
                         }} />
-                        {/* <ButtonSquare src="./src/assets/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
+                        {/* <ButtonSquare src="/public/images/brand-logos/vimeo-logo.svg" clickHandler={function(){
                             handleProfileChange("vimeo")
                         }} /> */}
-                        {/* <ButtonSquare src="./src/assets/images/brand-logos/html5-logo.svg" clickHandler={function(){
+                        {/* <ButtonSquare src="/public/images/brand-logos/html5-logo.svg" clickHandler={function(){
                             handleProfileChange("html5")
                         }} /> */}
-                        <ButtonSquare src="./src/assets/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
+                        <ButtonSquare src="/public/images/brand-logos/voicethread-logo.svg" clickHandler={function(){
                             handleProfileChange("voicethread")
                         }} />
-                        {/* <ButtonSquare src="./src/assets/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
+                        {/* <ButtonSquare src="/public/images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
                             handleProfileChange("canvas")
                         }} /> */}
-                        <ButtonSquare src="./src/assets/images/icons/settings-outline.svg" clickHandler={function(){
+                        <ButtonSquare src="/public/images/icons/settings-outline.svg" clickHandler={function(){
                             handleProfileChange("custom")
                         }} />
                     </div>
