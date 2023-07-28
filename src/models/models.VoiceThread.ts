@@ -1,5 +1,5 @@
 import { FormPropsData } from "../types/types";
-import { formatResponse, formatEmbedCode_Flex } from "./shared/utils";
+import { formatResponse, formatAllowParams, formatEmbedCode_Flex } from "./shared/utils";
 
 function validateURL(url: string){
     const reURL = new RegExp(/(https?:\/\/[a-z0-9\-]+\.voicethread\.com)\/share\/([0-9]{7,11})/)
@@ -11,6 +11,24 @@ function validateURL(url: string){
     }
 }
 
+function formatAllowList(settingsObject: FormPropsData, urlStem: string){
+
+    const camera = settingsObject.allow_camera ? `camera ${urlStem};` : "";
+    const microphone = settingsObject.allow_microphone ? `microphone ${urlStem};` : "";
+    const fullscreen = settingsObject.allow_fullscreen ? `fullscreen ${urlStem};` : "";
+
+    const nbsp = " ";
+    let allow_list = "";
+
+    allow_list += camera;
+    camera && (microphone || fullscreen) ? allow_list += nbsp : null;
+    allow_list += microphone;
+    microphone && fullscreen ? allow_list += nbsp : null;
+    allow_list += fullscreen;
+
+    return allow_list
+}
+
 export default function modelsVoicethread(settingsObject: FormPropsData){
 
     const matchResult = validateURL(settingsObject.url)
@@ -19,14 +37,12 @@ export default function modelsVoicethread(settingsObject: FormPropsData){
         return formatResponse(false, "URL or ID invalid", "")
     }
     
-    settingsObject.name = "VoiceThread player";
-    settingsObject.url = `${matchResult.urlStem}/app/player/?threadId=${matchResult.id}`;
+    const title = "VoiceThread player";
+    const url = `${matchResult.urlStem}/app/player/?threadId=${matchResult.id}`;
+    const allow_list = formatAllowList(settingsObject, matchResult.urlStem)
+    const allow_params = formatAllowParams(settingsObject.allow_fullscreen, (settingsObject.allow_camera || settingsObject.allow_microphone));
 
-    settingsObject.allow_fullscreen_allow_list = matchResult.urlStem;
-    settingsObject.allow_camera_allow_list = matchResult.urlStem;
-    settingsObject.allow_microphone_allow_list = matchResult.urlStem;
-
-    const embedCode = formatEmbedCode_Flex(settingsObject, "", "", "", "")
+    const embedCode = formatEmbedCode_Flex(settingsObject, title, url, allow_list, allow_params)
 
     return formatResponse(true, "operation succeeded", embedCode)
 }

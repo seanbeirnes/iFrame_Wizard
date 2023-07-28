@@ -41,7 +41,7 @@ export default function EmbedCodeGen(){
         return component ? component.active : false;
     }
 
-    function getDefaultFormProps(){
+    function getDefaultFormProps(url: string){
         return ({
             id: template.id,
             allow_accelerometer: isComponentActive(template, "allow_accelerometer"),
@@ -65,12 +65,12 @@ export default function EmbedCodeGen(){
             turn_off_related_videos: isComponentActive(template, "turn_off_related_videos"),
             use_custom_props: isComponentActive(template, "use_custom_props"),
             use_custom_props_text: "",
-            url: "",
+            url: url ? url : ""
         })
     }
 
     const [formProps, setFormProps] = useState<FormPropsData>(
-        getDefaultFormProps()
+        getDefaultFormProps("")
     );
 
     function handleFormProps_string(e: ChangeEvent<HTMLInputElement>){
@@ -161,7 +161,7 @@ export default function EmbedCodeGen(){
     }
 
     useEffect( () => {
-        setFormProps( getDefaultFormProps() )
+        setFormProps( getDefaultFormProps(formProps.url) )
     }, [useProfile])
 
     const [embedCode, setEmbedCode] = useState<{
