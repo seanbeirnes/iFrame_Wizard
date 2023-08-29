@@ -1,6 +1,6 @@
 import * as settings from "../../data/settings.json"
 import * as templatesJSON from "../../data/templates.json"
-import { ChangeEvent, useState, useEffect, EventHandler, ReactEventHandler, KeyboardEventHandler} from "react"
+import { ChangeEvent, useState, useEffect} from "react"
 import {Card, CardSection} from "../common/cards/index.tsx"
 import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
