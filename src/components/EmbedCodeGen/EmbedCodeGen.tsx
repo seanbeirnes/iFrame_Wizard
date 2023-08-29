@@ -1,6 +1,6 @@
 import * as settings from "../../data/settings.json"
 import * as templatesJSON from "../../data/templates.json"
-import { ChangeEvent, useState, useEffect} from "react"
+import { ChangeEvent, useState, useEffect, EventHandler, ReactEventHandler, KeyboardEventHandler} from "react"
 import {Card, CardSection} from "../common/cards/index.tsx"
 import {ButtonPrimary, ButtonSecondary, ButtonSquare} from "../common/buttons/index.tsx"
 import { OptionsTextInput, OptionsToggle, OptionsDropdown } from "../common/options/index.tsx"
@@ -178,37 +178,43 @@ export default function EmbedCodeGen(){
         } 
     }
 
+    function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>){
+        if(e.key == "Enter"){
+            submitHandler()
+        }
+    }
+
     return (
         <>      
             <Card title={`Embed Code Generator [${template.name} Template]`}>
 
                 <CardSection title="Select a template or choose the gear icon to customize">
                     <div className="px-2 flex flex-wrap gap-2">
-                        <ButtonSquare src="images/brand-logos/youtube-logo.svg" clickHandler={function(){
-                            handleProfileChange("youtube")
-                        }} />
+                        <ButtonSquare src="images/brand-logos/youtube-logo.svg" bkg="bg-gray-100" clickHandler={function(){
+                            handleProfileChange("youtube")}}
+                            active={template.id=="youtube"} />
                         {/* <ButtonSquare src="images/brand-logos/vimeo-logo.svg" clickHandler={function(){
                             handleProfileChange("vimeo")
                         }} /> */}
                         {/* <ButtonSquare src="images/brand-logos/html5-logo.svg" clickHandler={function(){
                             handleProfileChange("html5")
                         }} /> */}
-                        <ButtonSquare src="images/brand-logos/voicethread-logo.svg" clickHandler={function(){
-                            handleProfileChange("voicethread")
-                        }} />
+                        <ButtonSquare src="images/brand-logos/voicethread-logo.svg" bkg="bg-gray-100" clickHandler={function(){
+                            handleProfileChange("voicethread")}} 
+                            active={template.id=="voicethread"} />
                         {/* <ButtonSquare src="images/brand-logos/canvas_by_instructure-logo.svg" clickHandler={function(){
                             handleProfileChange("canvas")
                         }} /> */}
-                        <ButtonSquare src="images/icons/settings-outline.svg" clickHandler={function(){
-                            handleProfileChange("custom")
-                        }} />
+                        <ButtonSquare src="images/icons/settings-outline.svg" bkg="bg-gray-100" clickHandler={function(){
+                            handleProfileChange("custom")}}
+                            active={template.id=="custom"} />
                     </div>
                 </CardSection>
 
                 <CardSection title="Add the iFrame Source">
                     <div className="px-2">
                         <label htmlFor="add-url"></label>
-                        <input className="p-1 w-full border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-sm text-gray-500" type="text" id="url" name="add-url" placeholder="Paste or type in source URL (or ID for videos)" value={formProps.url} onChange={handleFormProps_string}/>
+                        <input className="p-1 w-full border-2 border-gray-200 rounded-md shadow-inner focus:border-sky-400 outline-2 outline-sky-400 text-sm text-gray-500" type="text" id="url" name="add-url" placeholder="Paste or type in source URL (or ID for videos)" value={formProps.url} onChange={handleFormProps_string} onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {handleKeyPress(e)}}/>
                     </div>
                 </CardSection>
 
